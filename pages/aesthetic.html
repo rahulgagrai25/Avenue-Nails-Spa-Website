@@ -409,6 +409,46 @@
       transform: translateY(-1px);
     }
 
+    /* Add to Cart Button Styling */
+    .add-to-cart-btn {
+      background-color: var(--primary-soft-rose);
+      color: var(--primary-white);
+      border: none;
+      padding: 8px 12px;
+      border-radius: 18px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+      margin-top: 5px; /* Adjust as needed */
+    }
+
+    .add-to-cart-btn:hover {
+      background-color: var(--secondary-dark-rose);
+    }
+
+    /* Cart Icon and Count Styling */
+    #cart-icon, #mobile-cart-icon {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    #cart-count, #mobile-cart-count {
+      background-color: var(--secondary-darker-rose);
+      color: var(--primary-white);
+      border-radius: 50%;
+      padding: 2px 7px;
+      font-size: 11px;
+      position: absolute;
+      top: -8px;
+      right: -15px;
+      min-width: 20px;
+      text-align: center;
+      line-height: 1;
+    }
+
     /* Responsive Design */
     @media (max-width: 1024px) {
       .facials-grid {
@@ -481,6 +521,18 @@
       
       .fc-price {
         font-size: 16px;
+      }
+      /* Adjust for smaller screens */
+      .add-to-cart-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+      #cart-count, #mobile-cart-count {
+        font-size: 10px;
+        padding: 1px 6px;
+        min-width: 18px;
+        top: -6px;
+        right: -12px;
       }
     }
     
@@ -564,6 +616,11 @@
           <li><a href="./index.html#our-story">Our Story</a></li>
           <li><a href="./index.html#gallery">Gallery</a></li>
           <li><a href="./index.html#booking">Contact</a></li>
+          <li>
+            <a href="billing.html" id="cart-icon">
+              🛒 <span id="cart-count">0</span>
+            </a>
+          </li>
         </ul>
 
         <div class="hamburger-menu">
@@ -582,6 +639,11 @@
         <li><a href="#our-story">Our Story</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#booking">Contact</a></li>
+        <li>
+          <a href="billing.html" id="mobile-cart-icon">
+            🛒 <span id="mobile-cart-count">0</span>
+          </a>
+        </li>
       </ul>
     </div>
   </header>
@@ -620,6 +682,7 @@
               </div>
               <div class="fc-right">
                 <strong class="fc-price"> €200</strong>
+                <button class="add-to-cart-btn" data-item-name="Botox" data-item-price="200">Add to Cart</button>
                 <span class="fc-time"></span>
               </div>
             </article>
@@ -634,6 +697,7 @@
               </div>
               <div class="fc-right">
                 <strong class="fc-price"> €500</strong>
+                <button class="add-to-cart-btn" data-item-name="Dermal Fillers" data-item-price="500">Add to Cart</button>
                 <span class="fc-time"></span>
               </div>
             </article>
@@ -648,6 +712,7 @@
               </div>
               <div class="fc-right">
                 <strong class="fc-price"> €33</strong>
+                <button class="add-to-cart-btn" data-item-name="Microneedling" data-item-price="33">Add to Cart</button>
                 <span class="fc-time"></span>
               </div>
             </article>
@@ -657,7 +722,7 @@
               recommendations.
             </p>
 
-            <a href="#book" class="facials-cta">Book Your Appointment</a>
+            <a href="billing.html" class="facials-cta">Book Your Appointment</a>
           </div>
         </div>
       </div>
@@ -694,6 +759,49 @@
         document.body.style.overflow = '';
       }
     });
+
+    // --- Cart Functionality ---
+    let cart = JSON.parse(localStorage.getItem('cart')) || []; // Load cart from localStorage
+    let cartItemCount = cart.reduce((total, item) => total + item.quantity, 0); // Calculate initial count
+
+    const cartCountElement = document.getElementById('cart-count');
+    const mobileCartCountElement = document.getElementById('mobile-cart-count');
+    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+
+    // Function to update the cart count display
+    function updateCartCount() {
+      cartCountElement.textContent = cartItemCount;
+      mobileCartCountElement.textContent = cartItemCount;
+      localStorage.setItem('cart', JSON.stringify(cart)); // Save cart to localStorage
+    }
+
+    // Function to add an item to the cart
+    function addItemToCart(itemName, itemPrice) {
+      const existingItem = cart.find(item => item.name === itemName);
+
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cart.push({ name: itemName, price: itemPrice, quantity: 1 });
+      }
+      
+      cartItemCount++; // Increment total item count
+      updateCartCount();
+      console.log('Current Cart:', cart); // For debugging: view cart contents in console
+      alert(`${itemName} added to cart! Total items: ${cartItemCount}`);
+    }
+
+    // Add event listeners to all "Add to Cart" buttons
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        const itemName = event.target.dataset.itemName;
+        const itemPrice = parseFloat(event.target.dataset.itemPrice);
+        addItemToCart(itemName, itemPrice);
+      });
+    });
+
+    // Initialize cart count on page load
+    updateCartCount();
   </script>
   </body>
 </html>

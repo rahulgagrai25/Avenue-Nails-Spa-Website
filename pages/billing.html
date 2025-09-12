@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avenue Nails & Spa - Billing</title>
+    <!-- fonts Cormorant garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      /* Global Colors */
+      :root {
+        /* Primary Colors */
+        --primary-soft-rose: #b76e79;
+        --primary-dark-brown: #4a3f35;
+        --primary-white: #fff;
+        --primary-dark-gray: #333;
+
+        /* Secondary Colors */
+        --secondary-light-pink: #f9e0e3;
+        --secondary-light-beige: #f5f0e9;
+        --secondary-off-white: #fffdfa;
+        --secondary-light-gray: #fcfafa;
+        --secondary-medium-gray: #777;
+        --secondary-light-pink-hover: #e5b8c2;
+        --secondary-dark-rose: #b44b67;
+        --secondary-darker-rose: #933a53;
+        --secondary-light-yellow: #e6b800;
+        --secondary-pale-rose: #e495a8;
+        --secondary-light-pink-quote: #f3d6d9;
+        --secondary-soft-pink-stars: #c97a7e;
+        --secondary-pale-beige: #faf6f2;
+        --secondary-light-border: #ddd;
+        --secondary-footer-background: #e9e0d5;
+        --secondary-footer-text-color: #444;
+        --secondary-footer-border: #d2c4b6;
+        --secondary-social-icon-hover: #fae1e4;
+
+        /* Other Colors (not categorized as primary/secondary based on usage) */
+        --neutral-dark: #222;
+        --neutral-medium: #555;
+        --neutral-light: #bbb;
+        --neutral-hover-dark: #a55c67; /* This was #b7757f in original, but changed to #a55c67 in the btn:hover */
+      }
+
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        overflow-x: hidden; /* Prevent horizontal scroll */
+        width: 100%;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: var(--secondary-off-white);
+        color: var(--primary-dark-gray);
+      }
+
+      /* Navbar */
+      .navbar {
+        height: 100px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 8%;
+        background: var(--secondary-light-gray);
+        position: absolute;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        line-height: 2rem;
+        font-weight: 300;
+        font-family: Cormorant Garamond, serif;
+        margin-left: 0.25rem;
+        display: flex; /* Make logo a flex container */
+        align-items: center; /* Vertically align items */
+      }
+
+      .logo-icon {
+        height: 30px; /* Adjust size as needed */
+        width: 30px; /* Adjust size as needed */
+        margin-right: 10px; /* Space between icon and text */
+        fill: var(--primary-soft-rose); /* Apply color if it's an SVG */
+      }
+
+      .logo span {
+        color: var(--primary-soft-rose); /* soft rose */
+        font-size: 24px;
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--primary-dark-gray);
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--secondary-dark-rose);
+      }
+
+      /* Hamburger Menu */
+      .hamburger-menu {
+        display: none; /* Hidden by default on larger screens */
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        cursor: pointer;
+        z-index: 1001; /* Ensure it's above other elements */
+      }
+
+      .hamburger-menu span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: var(--primary-soft-rose);
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      /* Hamburger menu animation */
+      .hamburger-menu.open span:nth-child(1) {
+        transform: translateY(11px) rotate(45deg);
+      }
+
+      .hamburger-menu.open span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger-menu.open span:nth-child(3) {
+        transform: translateY(-11px) rotate(-45deg);
+      }
+
+      /* Mobile Navigation */
+      .mobile-nav {
+        position: fixed;
+        top: 100px;
+        left: 0;
+        width: 100%;
+        background: var(--secondary-light-gray);
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 999;
+      }
+
+      .mobile-nav.active {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .mobile-nav-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .mobile-nav-links a {
+        text-decoration: none;
+        color: var(--primary-dark-gray);
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        transition: 0.3s;
+        display: block;
+        padding: 10px 0;
+      }
+
+      .mobile-nav-links a:hover {
+        color: var(--secondary-dark-rose);
+      }
+
+      /* Cart Icon and Count Styling */
+      #cart-icon,
+      #mobile-cart-icon {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      #cart-count,
+      #mobile-cart-count {
+        background-color: var(--secondary-darker-rose);
+        color: var(--primary-white);
+        border-radius: 50%;
+        padding: 2px 7px;
+        font-size: 11px;
+        position: absolute;
+        top: -8px;
+        right: -15px;
+        min-width: 20px;
+        text-align: center;
+        line-height: 1;
+      }
+
+      /* Billing Section Specific Styles */
+      .billing-section {
+        padding: 120px 6% 80px; /* Adjust padding to account for fixed navbar */
+        min-height: calc(100vh - 100px); /* Ensure content pushes footer down */
+        background-color: var(--secondary-off-white);
+      }
+
+      .billing-container {
+        max-width: 1200px; /* Increased max-width for two columns */
+        margin: 0 auto;
+        background: var(--primary-white);
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        padding: 40px;
+        display: flex; /* Enable flexbox for two-column layout */
+        gap: 40px; /* Space between columns */
+      }
+
+      .billing-header {
+        text-align: center;
+        margin-bottom: 30px;
+        grid-column: 1 / -1; /* Span across both columns */
+      }
+
+      .billing-header h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 44px;
+        color: var(--primary-dark-brown);
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        margin-bottom: 10px;
+      }
+
+      .billing-header h2 span {
+        color: var(--primary-soft-rose);
+      }
+
+      .billing-header p {
+        margin-top: 8px;
+        font-size: 15px;
+        color: var(--secondary-medium-gray);
+        max-width: 640px;
+        margin: 0 auto;
+      }
+
+      .cart-summary-section {
+        flex: 1; /* Take up available space */
+        min-width: 300px; /* Minimum width for the left column */
+      }
+
+      .billing-form-section {
+        flex: 2; /* Take up more space for the form */
+        min-width: 400px; /* Minimum width for the right column */
+      }
+
+      .cart-items {
+        margin-bottom: 30px;
+        border-bottom: 1px solid var(--secondary-light-border);
+        padding-bottom: 20px;
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-top: 1px solid var(--secondary-light-border);
+      }
+
+      .cart-item:first-child {
+        border-top: none;
+      }
+
+      .item-details {
+        flex-grow: 1;
+      }
+
+      .item-details h3 {
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        color: var(--primary-dark-gray);
+        margin-bottom: 2px;
+      }
+
+      .item-details p {
+        font-size: 13px;
+        color: var(--secondary-medium-gray);
+      }
+
+      .item-price {
+        font-weight: 700;
+        color: var(--primary-soft-rose);
+        font-size: 16px;
+        margin-left: 15px;
+      }
+
+      .item-quantity {
+        font-size: 14px;
+        color: var(--secondary-medium-gray);
+        margin-left: 10px;
+      }
+
+      .remove-item-btn {
+        background-color: #dc3545;
+        color: var(--primary-white);
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 12px;
+        margin-left: 15px;
+        transition: background-color 0.3s ease;
+      }
+
+      .remove-item-btn:hover {
+        background-color: #c82333;
+      }
+
+      .cart-summary {
+        display: flex;
+        justify-content: space-between;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 30px;
+        color: var(--primary-dark-brown);
+      }
+
+      .billing-form label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--primary-dark-gray);
+      }
+
+      .billing-form input[type="text"],
+      .billing-form input[type="email"],
+      .billing-form input[type="tel"],
+      .billing-form input[type="number"],
+      .billing-form select {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid var(--secondary-light-border);
+        border-radius: 8px;
+        font-size: 16px;
+        font-family: "Inter", sans-serif;
+        color: var(--primary-dark-gray);
+        transition: border-color 0.3s ease;
+      }
+
+      .billing-form input:focus,
+      .billing-form select:focus {
+        outline: none;
+        border-color: var(--primary-soft-rose);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 20px;
+      }
+
+      .form-row > div {
+        flex: 1;
+      }
+
+      .checkout-btn {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        background: var(--primary-soft-rose);
+        color: var(--primary-white);
+        border: none;
+        border-radius: 22px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.15s ease;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .checkout-btn:hover {
+        background: var(--neutral-hover-dark);
+        transform: translateY(-2px);
+      }
+
+      .empty-cart-message {
+        text-align: center;
+        font-size: 18px;
+        color: var(--secondary-medium-gray);
+        margin-top: 20px;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .billing-container {
+          flex-direction: column; /* Stack columns on smaller screens */
+          gap: 30px;
+          padding: 30px;
+        }
+        .cart-summary-section,
+        .billing-form-section {
+          min-width: unset; /* Remove min-width constraints */
+          flex: unset; /* Remove flex constraints */
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 18px 5%;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hamburger-menu {
+          display: flex;
+        }
+        .billing-section {
+          padding: 100px 5% 60px;
+        }
+        .billing-container {
+          padding: 25px;
+        }
+        .billing-header h2 {
+          font-size: 36px;
+        }
+        .billing-header p {
+          font-size: 14px;
+        }
+        .form-row {
+          flex-direction: column;
+          gap: 0;
+        }
+        .form-row > div {
+          margin-bottom: 20px;
+        }
+        .form-row > div:last-child {
+          margin-bottom: 0;
+        }
+        .item-details h3 {
+          font-size: 15px;
+        }
+        .item-details p {
+          font-size: 12px;
+        }
+        .item-price {
+          font-size: 15px;
+        }
+        .item-quantity {
+          font-size: 13px;
+        }
+        .remove-item-btn {
+          padding: 4px 8px;
+          font-size: 11px;
+        }
+        .cart-summary {
+          font-size: 16px;
+        }
+        .checkout-btn {
+          font-size: 16px;
+          padding: 12px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .logo {
+          font-size: 1.2rem;
+        }
+        .logo-icon {
+          height: 25px;
+          width: 25px;
+        }
+        .logo span {
+          font-size: 20px;
+        }
+        .billing-section {
+          padding: 80px 4% 50px;
+        }
+        .billing-container {
+          padding: 20px;
+        }
+        .billing-header h2 {
+          font-size: 30px;
+        }
+        .billing-header p {
+          font-size: 13px;
+        }
+        .cart-item {
+          flex-wrap: wrap;
+          gap: 5px;
+        }
+        .item-details {
+          flex-basis: 100%;
+        }
+        .item-price,
+        .item-quantity,
+        .remove-item-btn {
+          margin-left: 0;
+        }
+        .item-price {
+          order: -1; /* Move price before details on small screens */
+          width: 100%;
+          text-align: right;
+        }
+        .item-quantity {
+          width: 100%;
+          text-align: right;
+        }
+        .remove-item-btn {
+          width: 100%;
+          margin-top: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <img
+            src="spa-solid-full (1)pink.png"
+            alt="Nail Polish Icon"
+            class="logo-icon"
+          />
+          <span>Avenue Nails &</span> Spa
+        </div>
+        <ul class="nav-links">
+          <li><a href="./index.html#home">Home</a></li>
+          <li><a href="./index.html#services">Services</a></li>
+          <li><a href="./index.html#our-story">Our Story</a></li>
+          <li><a href="./index.html#gallery">Gallery</a></li>
+          <li><a href="./index.html#booking">Contact</a></li>
+          <li>
+            <a href="#" id="cart-icon">
+              🛒 <span id="cart-count">0</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="hamburger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+      <ul class="mobile-nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#our-story">Our Story</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#booking">Contact</a></li>
+        <li>
+          <a href="#" id="mobile-cart-icon">
+            🛒 <span id="mobile-cart-count">0</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Billing Section -->
+    <section class="billing-section">
+      <div class="billing-container">
+        <div class="billing-header">
+          <h2>Your <span>Cart</span> & Billing</h2>
+          <p>Review your selected services and complete your booking.</p>
+        </div>
+
+        <div class="cart-summary-section">
+          <h3>Your Order</h3>
+          <div class="cart-items" id="cart-items-list">
+            <!-- Cart items will be dynamically loaded here by JavaScript -->
+            <div class="empty-cart-message" id="empty-cart-message">
+              Your cart is empty. Add some services to proceed!
+            </div>
+          </div>
+
+          <div class="cart-summary">
+            <span>Total:</span>
+            <span id="cart-total">€0.00</span>
+          </div>
+        </div>
+
+        <div class="billing-form-section">
+          <form class="billing-form" id="billing-form">
+            <h3>Billing Details</h3>
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" name="fullName" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" required />
+            </div>
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input type="text" id="address" name="address" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" required />
+              </div>
+              <div class="form-group">
+                <label for="zipCode">Zip Code</label>
+                <input type="text" id="zipCode" name="zipCode" required />
+              </div>
+            </div>
+
+            <h3>Payment Information</h3>
+            <div class="form-group">
+              <label for="cardNumber">Card Number</label>
+              <input
+                type="text"
+                id="cardNumber"
+                name="cardNumber"
+                placeholder="XXXX XXXX XXXX XXXX"
+                required
+              />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="expiryDate">Expiry Date</label>
+                <input
+                  type="text"
+                  id="expiryDate"
+                  name="expiryDate"
+                  placeholder="MM/YY"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input
+                  type="text"
+                  id="cvv"
+                  name="cvv"
+                  placeholder="XXX"
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="checkout-btn">Place Order</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Mobile menu toggle functionality
+      const hamburgerMenu = document.querySelector(".hamburger-menu");
+      const mobileNav = document.querySelector(".mobile-nav");
+
+      hamburgerMenu.addEventListener("click", function () {
+        this.classList.toggle("open");
+        mobileNav.classList.toggle("active");
+
+        // Prevent body scrolling when menu is open
+        document.body.style.overflow = mobileNav.classList.contains("active")
+          ? "hidden"
+          : "";
+      });
+
+      // Close menu when clicking on a link
+      const mobileLinks = document.querySelectorAll(".mobile-nav-links a");
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburgerMenu.classList.remove("open");
+          mobileNav.classList.remove("active");
+          document.body.style.overflow = "";
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (
+          !hamburgerMenu.contains(e.target) &&
+          !mobileNav.contains(e.target) &&
+          mobileNav.classList.contains("active")
+        ) {
+          hamburgerMenu.classList.remove("open");
+          mobileNav.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+      });
+
+      // --- Cart Functionality for Billing Page ---
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartCountElement = document.getElementById("cart-count");
+      const mobileCartCountElement = document.getElementById("mobile-cart-count");
+      const cartItemsList = document.getElementById("cart-items-list");
+      const cartTotalElement = document.getElementById("cart-total");
+      const emptyCartMessage = document.getElementById("empty-cart-message");
+
+      function updateCartDisplay() {
+        cartItemsList.innerHTML = ""; // Clear current items
+        let total = 0;
+        let totalItemsInCart = 0;
+
+        if (cart.length === 0) {
+          emptyCartMessage.style.display = "block";
+        } else {
+          emptyCartMessage.style.display = "none";
+          cart.forEach((item, index) => {
+            const itemElement = document.createElement("div");
+            itemElement.classList.add("cart-item");
+            itemElement.innerHTML = `
+              <div class="item-details">
+                <h3>${item.name}</h3>
+                <p>Quantity: <span class="item-quantity">${item.quantity}</span></p>
+              </div>
+              <strong class="item-price">€${(item.price * item.quantity).toFixed(2)}</strong>
+              <button class="remove-item-btn" data-index="${index}">Remove</button>
+            `;
+            cartItemsList.appendChild(itemElement);
+            total += item.price * item.quantity;
+            totalItemsInCart += item.quantity;
+          });
+        }
+
+        cartTotalElement.textContent = `€${total.toFixed(2)}`;
+        cartCountElement.textContent = totalItemsInCart;
+        mobileCartCountElement.textContent = totalItemsInCart;
+        localStorage.setItem("cart", JSON.stringify(cart)); // Save updated cart to localStorage
+      }
+
+      function removeItemFromCart(index) {
+        if (cart[index].quantity > 1) {
+          cart[index].quantity--;
+        } else {
+          cart.splice(index, 1); // Remove item if quantity is 1
+        }
+        updateCartDisplay();
+      }
+
+      // Add event listener for remove buttons
+      cartItemsList.addEventListener("click", (event) => {
+        if (event.target.classList.contains("remove-item-btn")) {
+          const index = parseInt(event.target.dataset.index);
+          removeItemFromCart(index);
+        }
+      });
+
+      // Handle form submission
+      const billingForm = document.getElementById("billing-form");
+      billingForm.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent default form submission
+
+        if (cart.length === 0) {
+          alert("Your cart is empty. Please add services before placing an order.");
+          return;
+        }
+
+        // In a real application, you would send this data to a server
+        // For this example, we'll just log it and clear the cart
+        const formData = new FormData(billingForm);
+        const orderDetails = {
+          customer: {},
+          payment: {},
+          items: cart,
+          total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2),
+        };
+
+        for (let [key, value] of formData.entries()) {
+          if (['fullName', 'email', 'phone', 'address', 'city', 'zipCode'].includes(key)) {
+            orderDetails.customer[key] = value;
+          } else if (['cardNumber', 'expiryDate', 'cvv'].includes(key)) {
+            orderDetails.payment[key] = value;
+          }
+        }
+
+        console.log("Order Placed:", orderDetails);
+        alert("Order placed successfully! Thank you for your purchase.");
+
+        // Clear the cart after successful order
+        cart = [];
+        updateCartDisplay();
+        billingForm.reset(); // Clear form fields
+      });
+
+      // Initialize cart display on page load
+      updateCartDisplay();
+    </script>
+  </body>
+</html>

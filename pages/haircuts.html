@@ -409,6 +409,46 @@
       transform: translateY(-1px);
     }
 
+    /* Add to Cart Button Styling */
+    .add-to-cart-btn {
+      background-color: var(--primary-soft-rose);
+      color: var(--primary-white);
+      border: none;
+      padding: 8px 12px;
+      border-radius: 18px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+      margin-top: 5px; /* Adjust as needed */
+    }
+
+    .add-to-cart-btn:hover {
+      background-color: var(--secondary-dark-rose);
+    }
+
+    /* Cart Icon and Count Styling */
+    #cart-icon, #mobile-cart-icon {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    #cart-count, #mobile-cart-count {
+      background-color: var(--secondary-darker-rose);
+      color: var(--primary-white);
+      border-radius: 50%;
+      padding: 2px 7px;
+      font-size: 11px;
+      position: absolute;
+      top: -8px;
+      right: -15px;
+      min-width: 20px;
+      text-align: center;
+      line-height: 1;
+    }
+
     /* Responsive Design */
     @media (max-width: 1024px) {
       .facials-grid {
@@ -481,6 +521,18 @@
       
       .fc-price {
         font-size: 16px;
+      }
+      /* Adjust for smaller screens */
+      .add-to-cart-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+      #cart-count, #mobile-cart-count {
+        font-size: 10px;
+        padding: 1px 6px;
+        min-width: 18px;
+        top: -6px;
+        right: -12px;
       }
     }
     
@@ -559,11 +611,16 @@
         <span>Avenue Nails &</span> Spa
       </div>
       <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#our-story">Our Story</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#booking">Contact</a></li>
+        <li><a href="./index.html#home">Home</a></li>
+        <li><a href="./index.html#services">Services</a></li>
+        <li><a href="./index.html#our-story">Our Story</a></li>
+        <li><a href="./index.html#gallery">Gallery</a></li>
+        <li><a href="./index.html#booking">Contact</a></li>
+        <li>
+          <a href="billing.html" id="cart-icon">
+            🛒 <span id="cart-count">0</span>
+          </a>
+        </li>
       </ul>
       
       <div class="hamburger-menu">
@@ -576,11 +633,16 @@
     <!-- Mobile Navigation -->
     <div class="mobile-nav">
       <ul class="mobile-nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#our-story">Our Story</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#booking">Contact</a></li>
+        <li><a href="./index.html#home">Home</a></li>
+        <li><a href="./index.html#services">Services</a></li>
+        <li><a href="./index.html#our-story">Our Story</a></li>
+        <li><a href="./index.html#gallery">Gallery</a></li>
+        <li><a href="./index.html#booking">Contact</a></li>
+        <li>
+          <a href="billing.html" id="mobile-cart-icon">
+            🛒 <span id="mobile-cart-count">0</span>
+          </a>
+        </li>
       </ul>
     </div>
   </header>
@@ -597,7 +659,7 @@
         <!-- Left: Room image with decorative glass circles -->
          <div class="glass-circle glass-circle-1"></div>
           <div class="glass-circle glass-circle-2"></div>
-        <figure class="facials-image-wrap" aria-label="Facial treatment room">
+        <figure class="facials-image-wrap" aria-label="Haircut session image">
           
           <img
             src="https://ucarecdn.com/04dada4a-804b-45e2-a7c3-bf1d2a4f09ba/-/preview/640x480/"
@@ -617,6 +679,7 @@
             </div>
             <div class="fc-right">
               <strong class="fc-price">€45</strong>
+              <button class="add-to-cart-btn" data-item-name="Women Haircut" data-item-price="45">Add to Cart</button>
               <span class="fc-time"></span>
             </div>
           </article>
@@ -630,8 +693,8 @@
               </div>
             </div>
             <div class="fc-right">
-              <strong class="fc-price">
-€25</strong>
+              <strong class="fc-price">€25</strong>
+              <button class="add-to-cart-btn" data-item-name="Men Haircut" data-item-price="25">Add to Cart</button>
               <span class="fc-time"></span>
             </div>
           </article>
@@ -641,12 +704,12 @@
               <span class="fc-icon">🌿</span>
               <div>
                 <h3>Children Haircut</h3>
-                <p>Fun, age-appropriate cuts for kids.
-</p>
+                <p>Fun, age-appropriate cuts for kids.</p>
               </div>
             </div>
             <div class="fc-right">
               <strong class="fc-price">€20</strong>
+              <button class="add-to-cart-btn" data-item-name="Children Haircut" data-item-price="20">Add to Cart</button>
               <span class="fc-time"></span>
             </div>
           </article>
@@ -654,7 +717,7 @@
 
           <p class="facials-note">All treatments include a complimentary consultation and skincare recommendations.</p>
 
-          <a href="#book" class="facials-cta">Book Your Haircut</a>
+          <a href="billing.html" class="facials-cta">Book Your Haircut</a>
         </div>
       </div>
     </div>
@@ -691,6 +754,52 @@
         document.body.style.overflow = '';
       }
     });
+
+    // --- Cart Functionality ---
+    // Load cart from localStorage or initialize as empty array
+    let cart = JSON.parse(localStorage.getItem('cart')) || []; 
+    // Calculate initial item count by summing quantities of items in cart
+    let cartItemCount = cart.reduce((total, item) => total + item.quantity, 0); 
+
+    const cartCountElement = document.getElementById('cart-count');
+    const mobileCartCountElement = document.getElementById('mobile-cart-count');
+    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+
+    // Function to update the cart count display and save to localStorage
+    function updateCartCount() {
+      cartCountElement.textContent = cartItemCount;
+      mobileCartCountElement.textContent = cartItemCount;
+      localStorage.setItem('cart', JSON.stringify(cart)); // Save cart to localStorage
+    }
+
+    // Function to add an item to the cart
+    function addItemToCart(itemName, itemPrice) {
+      // Check if the item already exists in the cart
+      const existingItem = cart.find(item => item.name === itemName);
+
+      if (existingItem) {
+        existingItem.quantity++; // Increment quantity if item exists
+      } else {
+        cart.push({ name: itemName, price: itemPrice, quantity: 1 }); // Add new item
+      }
+      
+      cartItemCount++; // Increment total item count
+      updateCartCount(); // Update display and localStorage
+      console.log('Current Cart:', cart); // For debugging: view cart contents in console
+      alert(`${itemName} added to cart! Total items: ${cartItemCount}`);
+    }
+
+    // Add event listeners to all "Add to Cart" buttons
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        const itemName = event.target.dataset.itemName;
+        const itemPrice = parseFloat(event.target.dataset.itemPrice); // Convert price to a number
+        addItemToCart(itemName, itemPrice);
+      });
+    });
+
+    // Initialize cart count on page load
+    updateCartCount();
   </script>
 </body>
 </html>

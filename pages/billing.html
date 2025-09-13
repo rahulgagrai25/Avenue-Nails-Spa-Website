@@ -4,14 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Avenue Nails & Spa - Billing</title>
-    <!-- fonts Cormorant garamond -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
-    <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <style>
       /* Global Colors */
@@ -236,14 +234,21 @@
         border-radius: 16px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
         padding: 40px;
-        display: flex; /* Enable flexbox for two-column layout */
-        gap: 40px; /* Space between columns */
+        display: grid; /* MODIFIED FOR LAYOUT */
+        grid-template-columns: 1fr; /* MODIFIED FOR LAYOUT */
+        gap: 30px; /* MODIFIED FOR LAYOUT */
+      }
+      
+      .billing-content {
+          display: grid;
+          grid-template-columns: 1fr 1.5fr;
+          gap: 40px;
+          align-items: start;
       }
 
       .billing-header {
         text-align: center;
-        margin-bottom: 30px;
-        grid-column: 1 / -1; /* Span across both columns */
+        margin-bottom: 20px; /* MODIFIED FOR LAYOUT */
       }
 
       .billing-header h2 {
@@ -269,12 +274,10 @@
 
       .cart-summary-section {
         flex: 1; /* Take up available space */
-        min-width: 300px; /* Minimum width for the left column */
       }
 
       .billing-form-section {
         flex: 2; /* Take up more space for the form */
-        min-width: 400px; /* Minimum width for the right column */
       }
 
       .cart-items {
@@ -422,15 +425,11 @@
 
       /* Responsive Design */
       @media (max-width: 1024px) {
-        .billing-container {
-          flex-direction: column; /* Stack columns on smaller screens */
-          gap: 30px;
-          padding: 30px;
+        .billing-content { /* MODIFIED FOR LAYOUT */
+            grid-template-columns: 1fr;
         }
-        .cart-summary-section,
-        .billing-form-section {
-          min-width: unset; /* Remove min-width constraints */
-          flex: unset; /* Remove flex constraints */
+        .billing-container {
+          display: block; /* MODIFIED FOR LAYOUT */
         }
       }
 
@@ -532,8 +531,8 @@
           text-align: right;
         }
         .item-quantity {
-          width: 100%;
-          text-align: right;
+            width: 100%;
+            text-align: right;
         }
         .remove-item-btn {
           width: 100%;
@@ -560,7 +559,7 @@
           <li><a href="./index.html#gallery">Gallery</a></li>
           <li><a href="./index.html#booking">Contact</a></li>
           <li>
-            <a href="#" id="cart-icon">
+            <a href="billing.html" id="cart-icon">
               🛒 <span id="cart-count">0</span>
             </a>
           </li>
@@ -574,23 +573,21 @@
       </nav>
     </header>
 
-    <!-- Mobile Navigation -->
     <div class="mobile-nav">
       <ul class="mobile-nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#our-story">Our Story</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#booking">Contact</a></li>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./index.html#services">Services</a></li>
+        <li><a href="./index.html#our-story">Our Story</a></li>
+        <li><a href="./index.html#gallery">Gallery</a></li>
+        <li><a href="./index.html#booking">Contact</a></li>
         <li>
-          <a href="#" id="mobile-cart-icon">
+          <a href="billing.html" id="mobile-cart-icon">
             🛒 <span id="mobile-cart-count">0</span>
           </a>
         </li>
       </ul>
     </div>
 
-    <!-- Billing Section -->
     <section class="billing-section">
       <div class="billing-container">
         <div class="billing-header">
@@ -598,87 +595,45 @@
           <p>Review your selected services and complete your booking.</p>
         </div>
 
-        <div class="cart-summary-section">
-          <h3>Your Order</h3>
-          <div class="cart-items" id="cart-items-list">
-            <!-- Cart items will be dynamically loaded here by JavaScript -->
-            <div class="empty-cart-message" id="empty-cart-message">
-              Your cart is empty. Add some services to proceed!
-            </div>
-          </div>
-
-          <div class="cart-summary">
-            <span>Total:</span>
-            <span id="cart-total">€0.00</span>
-          </div>
-        </div>
-
-        <div class="billing-form-section">
-          <form class="billing-form" id="billing-form">
-            <h3>Billing Details</h3>
-            <div class="form-group">
-              <label for="fullName">Full Name</label>
-              <input type="text" id="fullName" name="fullName" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" required />
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" name="phone" required />
-            </div>
-            <div class="form-group">
-              <label for="address">Address</label>
-              <input type="text" id="address" name="address" required />
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="city">City</label>
-                <input type="text" id="city" name="city" required />
+        <div class="billing-content">
+            <div class="cart-summary-section">
+                <h3>Your Order</h3>
+                <div class="cart-items" id="cart-items-list">
+                  <div class="empty-cart-message" id="empty-cart-message">
+                    Your cart is empty. Add some services to proceed!
+                  </div>
+                </div>
+      
+                <div class="cart-summary">
+                  <span>Total:</span>
+                  <span id="cart-total">€0.00</span>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="zipCode">Zip Code</label>
-                <input type="text" id="zipCode" name="zipCode" required />
-              </div>
-            </div>
+      
+              <div class="billing-form-section">
+                <form class="billing-form" id="billing-form" action="https://api.web3forms.com/submit" method="POST">
+                  
+                  <input type="hidden" name="access_key" value="eae2e12d-afaf-4364-ac51-fa1d6529d71f" />
+                  <input type="hidden" name="subject" value="New Service Booking from Billing Page" />
+                  <textarea name="order_summary" id="hidden-order-summary" style="display: none;"></textarea>
 
-            <h3>Payment Information</h3>
-            <div class="form-group">
-              <label for="cardNumber">Card Number</label>
-              <input
-                type="text"
-                id="cardNumber"
-                name="cardNumber"
-                placeholder="XXXX XXXX XXXX XXXX"
-                required
-              />
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="expiryDate">Expiry Date</label>
-                <input
-                  type="text"
-                  id="expiryDate"
-                  name="expiryDate"
-                  placeholder="MM/YY"
-                  required
-                />
+                  <h3>Billing Details</h3>
+                  <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required />
+                  </div>
+                  
+                  <button type="submit" class="checkout-btn">Place Order</button>
+                </form>
               </div>
-              <div class="form-group">
-                <label for="cvv">CVV</label>
-                <input
-                  type="text"
-                  id="cvv"
-                  name="cvv"
-                  placeholder="XXX"
-                  required
-                />
-              </div>
-            </div>
-
-            <button type="submit" class="checkout-btn">Place Order</button>
-          </form>
         </div>
       </div>
     </section>
@@ -778,41 +733,33 @@
         }
       });
 
-      // Handle form submission
+      // UPDATE 2: This is the updated form submission logic
       const billingForm = document.getElementById("billing-form");
-      billingForm.addEventListener("submit", (event) => {
-        event.preventDefault(); // Prevent default form submission
+      const hiddenOrderSummary = document.getElementById("hidden-order-summary");
 
+      billingForm.addEventListener("submit", (event) => {
+        // First, check if the cart is empty. If it is, stop the form from submitting.
         if (cart.length === 0) {
+          event.preventDefault(); 
           alert("Your cart is empty. Please add services before placing an order.");
           return;
         }
 
-        // In a real application, you would send this data to a server
-        // For this example, we'll just log it and clear the cart
-        const formData = new FormData(billingForm);
-        const orderDetails = {
-          customer: {},
-          payment: {},
-          items: cart,
-          total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2),
-        };
+        // If the cart has items, format them into a clean string for the email
+        let orderSummaryText = "--- SERVICES BOOKED ---\n\n";
+        let total = 0;
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            orderSummaryText += `${item.name} (Quantity: ${item.quantity}) - €${itemTotal.toFixed(2)}\n`;
+            total += itemTotal;
+        });
+        orderSummaryText += `\n----------------------\nTOTAL: €${total.toFixed(2)}`;
 
-        for (let [key, value] of formData.entries()) {
-          if (['fullName', 'email', 'phone', 'address', 'city', 'zipCode'].includes(key)) {
-            orderDetails.customer[key] = value;
-          } else if (['cardNumber', 'expiryDate', 'cvv'].includes(key)) {
-            orderDetails.payment[key] = value;
-          }
-        }
+        // Put the formatted string into our hidden textarea so it gets sent with the form
+        hiddenOrderSummary.value = orderSummaryText;
 
-        console.log("Order Placed:", orderDetails);
-        alert("Order placed successfully! Thank you for your purchase.");
-
-        // Clear the cart after successful order
-        cart = [];
-        updateCartDisplay();
-        billingForm.reset(); // Clear form fields
+        // The form will now submit to Web3Forms. We clear the cart here so the user starts fresh.
+        localStorage.removeItem("cart");
       });
 
       // Initialize cart display on page load

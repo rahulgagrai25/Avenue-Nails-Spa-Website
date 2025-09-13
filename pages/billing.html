@@ -352,6 +352,41 @@
         margin-bottom: 30px;
         color: var(--primary-dark-brown);
       }
+                /* Booking Form (Date + Time side by side, Requests full width) */
+.form-row.booking-form > div {
+  flex: 1;
+}
+
+.booking-form input[type="date"],
+.booking-form select,
+.booking-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--secondary-light-border);
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  color: var(--primary-dark-gray);
+  transition: border-color 0.3s ease;
+  background-color: var(--primary-white);
+}
+
+.booking-form input[type="date"]:focus,
+.booking-form select:focus,
+.booking-form textarea:focus {
+  outline: none;
+  border-color: var(--primary-soft-rose);
+  box-shadow: 0 0 0 2px rgba(183, 110, 121, 0.2);
+}
+
+.booking-form textarea {
+  resize: vertical;
+}
+
+.booking-form textarea::placeholder {
+  color: var(--secondary-medium-gray);
+  font-size: 14px;
+}
 
       .billing-form label {
         display: block;
@@ -630,7 +665,30 @@
                     <label for="phone">Phone Number</label>
                     <input type="tel" id="phone" name="phone" required />
                   </div>
-                  
+                  <div class="form-row booking-form">
+  <div>
+    <input type="date" name="date" required />
+  </div>
+  <div>
+    <select name="time" required>
+      <option value="">Select time</option>
+      <option>10:00 AM</option>
+      <option>12:00 PM</option>
+      <option>2:00 PM</option>
+      <option>4:00 PM</option>
+      <option>6:00 PM</option>
+    </select>
+  </div>
+</div>
+
+<div class="booking-form">
+  <textarea
+    name="requests"
+    rows="4"
+    placeholder="Any special requests or notes..."
+  ></textarea>
+</div>
+
                   <button type="submit" class="checkout-btn">Place Order</button>
                 </form>
               </div>

@@ -202,6 +202,9 @@
         position: relative;
         display: inline-flex;
         align-items: center;
+        background-color: var(--secondary-light-pink);
+      padding: 5px 20px;
+      border-radius: 15px;
         gap: 5px;
       }
 
@@ -641,7 +644,7 @@
       
                 <div class="cart-summary">
                   <span>Total:</span>
-                  <span id="cart-total">€0.00</span>
+                  <span id="cart-total">$0.00</span>
                 </div>
               </div>
       
@@ -760,7 +763,7 @@
                 <h3>${item.name}</h3>
                 <p>Quantity: <span class="item-quantity">${item.quantity}</span></p>
               </div>
-              <strong class="item-price">€${(item.price * item.quantity).toFixed(2)}</strong>
+              <strong class="item-price">$${(item.price * item.quantity).toFixed(2)}</strong>
               <button class="remove-item-btn" data-index="${index}">Remove</button>
             `;
             cartItemsList.appendChild(itemElement);
@@ -769,7 +772,7 @@
           });
         }
 
-        cartTotalElement.textContent = `€${total.toFixed(2)}`;
+        cartTotalElement.textContent = `$${total.toFixed(2)}`;
         cartCountElement.textContent = totalItemsInCart;
         mobileCartCountElement.textContent = totalItemsInCart;
         localStorage.setItem("cart", JSON.stringify(cart)); // Save updated cart to localStorage
@@ -809,10 +812,10 @@
         let total = 0;
         cart.forEach(item => {
             const itemTotal = item.price * item.quantity;
-            orderSummaryText += `${item.name} (Quantity: ${item.quantity}) - €${itemTotal.toFixed(2)}\n`;
+            orderSummaryText += `${item.name} (Quantity: ${item.quantity}) - $${itemTotal.toFixed(2)}\n`;
             total += itemTotal;
         });
-        orderSummaryText += `\n----------------------\nTOTAL: €${total.toFixed(2)}`;
+        orderSummaryText += `\n----------------------\nTOTAL: $${total.toFixed(2)}`;
 
         // Put the formatted string into our hidden textarea so it gets sent with the form
         hiddenOrderSummary.value = orderSummaryText;

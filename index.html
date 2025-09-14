@@ -109,9 +109,9 @@
       <div class="services-container" id="services-container" data-aos="fade-up" data-aos-duration="1000"></div>
 
       <!-- View More -->
-      <div class="view-more" data-aos="fade-up" data-aos-duration="1000">
+      <!-- <div class="view-more" data-aos="fade-up" data-aos-duration="1000">
         <a href="services page.html">View More Services</a>
-      </div>
+      </div> -->
     </section>
 
     <!-- Story of excellence -->
@@ -769,17 +769,17 @@
       const { useState, useRef, useCallback } = React;
 
       const servicesData = [
-        { title: "Facials", imageUrl: "cards/facial c.png" },
-        { title: "Body Treatment", imageUrl: "cards/body treatment c.png" },
-        { title: "Waxing", imageUrl: "cards/waxing c.png" },
-        { title: "Lashes & Eyebrows", imageUrl: "cards/lashes c.png" },
-        { title: "Pedicure", imageUrl: "cards/pedicure c.png" },
-        { title: "Wigs", imageUrl: "cards/wig c.png" },
+        { title: "Facials & Head Spa", imageUrl: "cards/exfol treat c.png", link: "pages/facial_head_spa.html" },
+        { title: "Massage", imageUrl: "cards/massage c.png", link: "pages/massage_service.html" },
+        { title: "Waxing & Tinting", imageUrl: "cards/waxing c.png", link: "pages/waxing_service.html" },
+        { title: "Lashes & Brows", imageUrl: "cards/lashes c.png", link: "pages/lashes_service.html" },
+        { title: "Korean Makeup", imageUrl: "cards/korean c.png", link: "pages/korean_makeup.html" },
+        { title: "Nails", imageUrl: "cards/nails c.png", link: "nails_service.html" },
         
       ];
 
       const ServiceCard = ({ service }) => (
-        <div className="service-card">
+        <a href={service.link} className="service-card">
           <div className="avatar image-wrap">
             <img
               src={service.imageUrl}
@@ -788,7 +788,7 @@
             />
           </div>
           <p className="title">{service.title}</p>
-        </div>
+        </a>
       );
 
       const ServicesGrid = () => {

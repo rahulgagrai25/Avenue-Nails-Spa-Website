@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Avenue Nails & Spa - Aesthetic Treatments</title>
+    <title>Avenue Nails & Spa - Facials & Head Spa</title>
     <!-- fonts Cormorant garamond -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -245,12 +245,13 @@
       margin: 0 auto;
     }
 
+    /* Modified: Image centered, menu below */
     .facials-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 1fr;
-      gap: 28px;
+      display: flex; /* Change to flex */
+      flex-direction: column; /* Stack items vertically */
+      align-items: center; /* Center items horizontally */
+      gap: 28px; /* Space between image and menu */
       margin-top: 28px;
-      align-items: start;
     }
 
     .facials-image-wrap {
@@ -260,6 +261,9 @@
       box-shadow: var(--fs-shadow);
       position: relative;
       overflow: hidden;
+      max-width: 600px; /* Constrain image width for centering */
+      width: 100%; /* Ensure it takes full width up to max-width */
+      margin-bottom: 20px; /* Space between image and the menu container */
     }
 
     /* Glass morphed circle decorative elements */
@@ -277,7 +281,7 @@
       width: 130px;
       height: 130px;
       top: 180px;
-      left:650px;
+      left:960px; /* This will be relative to the image wrap, might need adjustment */
       background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(217, 32, 97, 0.118) 100%);
     }
     
@@ -285,7 +289,7 @@
       width: 120px;
       height: 120px;
       bottom: 30px;
-      left: 120px;
+      left: 420px; /* This will be relative to the image wrap, might need adjustment */
       background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(217, 32, 97, 0.118) 100%);
     }
 
@@ -307,14 +311,18 @@
       z-index: 2;
     }
 
+    /* The main container for the service cards - now just a wrapper */
     .facials-card-list {
-      background: rgba(255,255,255,0.65);
-      backdrop-filter: blur(4px);
-      border-radius: 16px;
-      box-shadow: var(--fs-shadow);
-      padding: 12px;
+      /* Removed background, shadow, etc. from here */
+      width: 100%; /* Ensure it takes full width */
+      max-width: 1200px; /* Match container max-width */
+      display: flex; /* Use flex to stack the grid and other elements */
+      flex-direction: column;
+      gap: 10px; /* Space between the grid and note/cta */
+      padding: 0; /* Remove padding from this wrapper */
     }
 
+    /* Individual service card style (re-used for lash services) */
     .facials-card {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -322,7 +330,7 @@
       background: var(--fs-card);
       border-radius: 12px;
       padding: 16px 18px;
-      margin: 10px 0;
+      margin: 0; /* Reset margin as grid will handle spacing */
       border: 1px solid #f1e6e8;
       transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     }
@@ -449,15 +457,41 @@
       line-height: 1;
     }
 
+    /* New CSS for 3-column lash services grid (re-used for facials/head spa) */
+    .lash-services-grid { /* Renamed to .services-grid for general use if needed */
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+      gap: 10px; /* Smaller gap between cards within the grid */
+      padding: 12px; /* Padding for the entire grid container */
+      background: rgba(255,255,255,0.65); /* Apply background here */
+      backdrop-filter: blur(4px); /* Apply backdrop-filter here */
+      border-radius: 16px; /* Apply border-radius here */
+      box-shadow: var(--fs-shadow); /* Apply box-shadow here */
+      width: 100%; /* Ensure it takes full width of its parent */
+    }
+
+    .lash-category-title { /* Renamed to .service-category-title for general use if needed */
+      grid-column: 1 / -1; /* Span across all columns */
+      text-align: center;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+      color: var(--fs-brown);
+      font-weight: 600;
+      margin-top: 20px;
+      margin-bottom: 15px;
+    }
+
     /* Responsive Design */
     @media (max-width: 1024px) {
-      .facials-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
       
       .facials-image-wrap img {
         height: 360px;
+      }
+      .lash-services-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+      }
+      .lash-category-title {
+        font-size: 24px;
       }
     }
     
@@ -491,7 +525,7 @@
       
       .facials-card {
         padding: 14px;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Stack content on small screens */
         gap: 10px;
       }
       
@@ -515,7 +549,7 @@
       }
       
       .fc-right {
-        justify-items: start;
+        justify-items: start; /* Align price/button to start on small screens */
         margin-top: 5px;
       }
       
@@ -533,6 +567,12 @@
         min-width: 18px;
         top: -6px;
         right: -12px;
+      }
+      .lash-services-grid {
+        grid-template-columns: 1fr; /* 1 column on small screens */
+      }
+      .lash-category-title {
+        font-size: 22px;
       }
     }
     
@@ -552,10 +592,6 @@
       
       .facials-section {
         padding: 70px 4% 70px;
-      }
-      
-      .facials-header h2 {
-        font-size: 32px;
       }
       
       .facials-image-wrap {
@@ -596,6 +632,9 @@
         padding: 10px 18px;
         font-size: 14px;
       }
+      .lash-category-title {
+        font-size: 20px;
+      }
     }
   </style>
   </head>
@@ -629,97 +668,100 @@
           <span></span>
         </div>
       </nav>
-    </header>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav">
-      <ul class="mobile-nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#our-story">Our Story</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#booking">Contact</a></li>
-        <li>
-          <a href="billing.html" id="mobile-cart-icon">
-            🛒 <span id="mobile-cart-count">0</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </header>
+      <!-- Mobile Navigation -->
+      <div class="mobile-nav">
+        <ul class="mobile-nav-links">
+          <li><a href="./index.html#home">Home</a></li>
+          <li><a href="./index.html#services">Services</a></li>
+          <li><a href="./index.html#our-story">Our Story</a></li>
+          <li><a href="./index.html#gallery">Gallery</a></li>
+          <li><a href="./index.html#booking">Contact</a></li>
+          <li>
+            <a href="billing.html" id="mobile-cart-icon">
+              🛒 <span id="mobile-cart-count">0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
 
     <!-- Facial Services Section -->
     <section class="facials-section" id="facials">
       <div class="facials-container">
         <div class="facials-header">
-          <h2>Aesthetic <span>Treatments</span></h2>
+          <h2> Facials &<span> Head Spa</span></h2>
           <p>
-            Enhance your natural beauty with innovative, personalized aesthetic
-            care.
+            Rejuvenate and refresh your skin and scalp with our deeply nourishing treatments.
           </p>
         </div>
 
         <div class="facials-grid">
-          <!-- Left: Room image with decorative glass circles -->
+          <!-- Image centered and above the menu -->
           <div class="glass-circle glass-circle-1"></div>
           <div class="glass-circle glass-circle-2"></div>
           <figure class="facials-image-wrap" aria-label="Facial treatment room">
             <img
-              src="https://ucarecdn.com/c2388f27-8c93-43b7-8d9d-e327d285895b/-/preview/640x480/"
-              alt="Aesthetic treatment session"
+              src="https://sashaclinics.com/wp-content/uploads/2024/08/different-kinds-of-facial-treatments-you-must-know-az-wilson-aesthetics.jpg"
+              alt="Facial session"
             />
           </figure>
 
-          <!-- Right: Services list -->
+          <!-- Services list container -->
           <div class="facials-card-list">
-            <article class="facials-card">
-              <div class="fc-left">
-                <span class="fc-icon">✨</span>
-                <div>
-                  <h3>Botox</h3>
-                  <p>Reduce wrinkles with precise, natural-looking results.</p>
-                </div>
-              </div>
-              <div class="fc-right">
-                <strong class="fc-price"> €200</strong>
-                <button class="add-to-cart-btn" data-item-name="Botox" data-item-price="200">Add to Cart</button>
-                <span class="fc-time"></span>
-              </div>
-            </article>
+            <div class="lash-services-grid">
+              <h2 class="lash-category-title">Head Spa Services</h2>
 
-            <article class="facials-card">
-              <div class="fc-left">
-                <span class="fc-icon">💎</span>
-                <div>
-                  <h3>Dermal Fillers</h3>
-                  <p>Add volume and smooth fine lines with hyaluronic acid.</p>
+              <article class="facials-card">
+                <div class="fc-left">
+                  <span class="fc-icon">💆‍♀️</span>
+                  <div>
+                    <h3>Basic Head Spa</h3>
+                    <p>45 min - Relaxing scalp massage and hair treatment.</p>
+                  </div>
                 </div>
-              </div>
-              <div class="fc-right">
-                <strong class="fc-price"> €500</strong>
-                <button class="add-to-cart-btn" data-item-name="Dermal Fillers" data-item-price="500">Add to Cart</button>
-                <span class="fc-time"></span>
-              </div>
-            </article>
+                <div class="fc-right">
+                  <strong class="fc-price">€45</strong>
+                  <button class="add-to-cart-btn" data-item-name="Basic Head Spa (45 min)" data-item-price="45">Add to Cart</button>
+                </div>
+              </article>
 
-            <article class="facials-card">
-              <div class="fc-left">
-                <span class="fc-icon">💎</span>
-                <div>
-                  <h3>Microneedling</h3>
-                  <p>Stimulate collagen for firmer, refreshed skin.</p>
+              <article class="facials-card">
+                <div class="fc-left">
+                  <span class="fc-icon">🌿</span>
+                  <div>
+                    <h3>Scalp Detox</h3>
+                    <p>90 min - Deep cleansing and purifying treatment for the scalp.</p>
+                  </div>
                 </div>
-              </div>
-              <div class="fc-right">
-                <strong class="fc-price"> €33</strong>
-                <button class="add-to-cart-btn" data-item-name="Microneedling" data-item-price="33">Add to Cart</button>
-                <span class="fc-time"></span>
-              </div>
-            </article>
+                <div class="fc-right">
+                  <strong class="fc-price">€115</strong>
+                  <button class="add-to-cart-btn" data-item-name="Scalp Detox (90 min)" data-item-price="115">Add to Cart</button>
+                </div>
+              </article>
+
+              <h2 class="lash-category-title">Facial Services</h2>
+
+              <article class="facials-card">
+                <div class="fc-left">
+                  <span class="fc-icon">✨</span>
+                  <div>
+                    <h3>Classic Facial</h3>
+                    <p>60 min - Deep cleansing, exfoliation, and hydration for all skin types.</p>
+                  </div>
+                </div>
+                <div class="fc-right">
+                  <strong class="fc-price">€85</strong>
+                  <button class="add-to-cart-btn" data-item-name="Classic Facial (60 min)" data-item-price="85">Add to Cart</button>
+                </div>
+              </article>
+
+              <!-- Original facial services, now updated or removed based on new menu -->
+              <!-- Removed Anti-Aging Facial, Acne Treatment Facial, Brightening Facial as per new menu -->
+            </div>
 
             <p class="facials-note">
-              All treatments include a complimentary consultation and skincare
-              recommendations.
+              All treatments include a complimentary consultation and personalized recommendations.
             </p>
 
             <a href="billing.html" class="facials-cta">Book Your Appointment</a>
@@ -761,14 +803,16 @@
     });
 
     // --- Cart Functionality ---
-    let cart = JSON.parse(localStorage.getItem('cart')) || []; // Load cart from localStorage
-    let cartItemCount = cart.reduce((total, item) => total + item.quantity, 0); // Calculate initial count
+    // Load cart from localStorage or initialize as empty array
+    let cart = JSON.parse(localStorage.getItem('cart')) || []; 
+    // Calculate initial item count by summing quantities of items in cart
+    let cartItemCount = cart.reduce((total, item) => total + item.quantity, 0); 
 
     const cartCountElement = document.getElementById('cart-count');
     const mobileCartCountElement = document.getElementById('mobile-cart-count');
     const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
 
-    // Function to update the cart count display
+    // Function to update the cart count display and save to localStorage
     function updateCartCount() {
       cartCountElement.textContent = cartItemCount;
       mobileCartCountElement.textContent = cartItemCount;
@@ -777,16 +821,17 @@
 
     // Function to add an item to the cart
     function addItemToCart(itemName, itemPrice) {
+      // Check if the item already exists in the cart
       const existingItem = cart.find(item => item.name === itemName);
 
       if (existingItem) {
-        existingItem.quantity++;
+        existingItem.quantity++; // Increment quantity if item exists
       } else {
-        cart.push({ name: itemName, price: itemPrice, quantity: 1 });
+        cart.push({ name: itemName, price: itemPrice, quantity: 1 }); // Add new item
       }
       
       cartItemCount++; // Increment total item count
-      updateCartCount();
+      updateCartCount(); // Update display and localStorage
       console.log('Current Cart:', cart); // For debugging: view cart contents in console
       alert(`${itemName} added to cart! Total items: ${cartItemCount}`);
     }
@@ -795,7 +840,7 @@
     addToCartButtons.forEach(button => {
       button.addEventListener('click', (event) => {
         const itemName = event.target.dataset.itemName;
-        const itemPrice = parseFloat(event.target.dataset.itemPrice);
+        const itemPrice = parseFloat(event.target.dataset.itemPrice); // Convert price to a number
         addItemToCart(itemName, itemPrice);
       });
     });

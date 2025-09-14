@@ -50,6 +50,69 @@
         }
       }
     </script>
+    <style>
+      /* Add this to your style.css or in a style tag */
+      .fading-overlay {
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Removed the ::before and ::after pseudo-elements that created the gradients */
+      /*
+      .fading-overlay::before,
+      .fading-overlay::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 10%;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .fading-overlay::before {
+        left: 0;
+        background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+      }
+
+      .fading-overlay::after {
+        right: 0;
+        background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+      }
+      */
+
+      /* Ensure the container for desktop carousel has enough width */
+      .desktop-carousel-container {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .desktop-carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .desktop-carousel-item {
+        flex: 0 0 auto; /* Prevent items from shrinking */
+        width: calc(100% / 6); /* Adjust based on how many items you want visible */
+        padding: 0 10px; /* Spacing between cards */
+        box-sizing: border-box;
+      }
+
+      /* Adjust for smaller desktop screens if needed */
+      @media (max-width: 1200px) {
+        .desktop-carousel-item {
+          width: calc(100% / 4);
+        }
+      }
+
+      @media (max-width: 992px) {
+        .desktop-carousel-item {
+          width: calc(100% / 3);
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Navbar -->
@@ -268,7 +331,7 @@
       <div class="testimonial-grid">
         <!-- Card 1 -->
         <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="quote-icon">“</div>
+          <div class="quote-icon">"</div>
           <p>
             "The facial treatment at Avenue Spa was absolutely divine. My skin
             has never felt so refreshed and rejuvenated. The therapist was
@@ -285,7 +348,7 @@
 
         <!-- Card 2 -->
         <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="quote-icon">“</div>
+          <div class="quote-icon">"</div>
           <p>
             "I've been to many spas, but Avenue stands out for its exceptional
             service and attention to detail. The aromatherapy massage was
@@ -302,7 +365,7 @@
 
         <!-- Card 3 -->
         <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="quote-icon">“</div>
+          <div class="quote-icon">"</div>
           <p>
             "The nail care services at Serenity Spa are top-notch. The
             technicians are skilled and the products they use are high-quality.
@@ -485,18 +548,12 @@
 
               <select name="service" required>
                 <option value="">Select a service</option>
-                <option>Facials</option>
-                <option>Body Treatment</option>
-                <option>Waxing</option>
+                <option>Facials & Head Spa</option>
+                <option>Massage</option>
+                <option>Waxing & Tinting</option>
                 <option>Lashes & Eyebrows</option>
-                <option>Pedicure</option>
-                <option>Manicure</option>
-                <option>Wigs</option>
-                <option>Haircuts</option>
-                <option>Hair Coloring</option>
-                <option>Styling</option>
-                <option>Exfoliation Treatments</option>
-                <option>Aesthetic Treatments</option>
+                <option>Korean Permanent Makeup</option>
+                <option>Nails</option>
               </select>
 
               <div class="date-time">
@@ -517,7 +574,7 @@
                 placeholder="Any special requests or notes..."
               ></textarea>
 
-              <button type="submit"class="btn">Book Appointment</button>
+              <button type="submit" class="btn">Book Appointment</button>
             </form>
           </div>
         </div>
@@ -766,7 +823,7 @@
     <!-- React Component for Services Section -->
 
     <script type="text/babel">
-      const { useState, useRef, useCallback } = React;
+      const { useState, useRef, useCallback, useEffect } = React;
 
       const servicesData = [
         { title: "Facials & Head Spa", imageUrl: "cards/exfol treat c.png", link: "pages/facial_head_spa.html" },
@@ -792,19 +849,38 @@
       );
 
       const ServicesGrid = () => {
-        const [currentIndex, setCurrentIndex] = useState(1);
+        const [currentIndex, setCurrentIndex] = useState(0); // Start from 0 for continuous loop
         const dragStartX = useRef(0);
         const containerRef = useRef(null);
         const isDragging = useRef(false);
+        const intervalRef = useRef(null);
+
+        const startAutoScroll = useCallback(() => {
+          intervalRef.current = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % servicesData.length);
+          }, 3000); // Change card every 3 seconds
+        }, []);
+
+        const stopAutoScroll = useCallback(() => {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+          }
+        }, []);
+
+        useEffect(() => {
+          startAutoScroll();
+          return () => stopAutoScroll();
+        }, [startAutoScroll, stopAutoScroll]);
 
         const handleDragStart = useCallback((x) => {
+          stopAutoScroll(); // Stop auto-scroll on drag start
           isDragging.current = true;
           dragStartX.current = x;
           if (containerRef.current) {
             containerRef.current.style.transition = "none";
             containerRef.current.style.cursor = "grabbing";
           }
-        }, []);
+        }, [stopAutoScroll]);
 
         const handleDragMove = useCallback((x) => {
           if (!isDragging.current || !containerRef.current) return;
@@ -835,7 +911,8 @@
                 (prevIndex - 1 + servicesData.length) % servicesData.length
             );
           }
-        }, []);
+          startAutoScroll(); // Resume auto-scroll after drag end
+        }, [startAutoScroll]);
 
         const handleTouchStart = useCallback(
           (e) => handleDragStart(e.targetTouches[0].clientX),
@@ -873,7 +950,8 @@
           [handleDragEnd]
         );
 
-        const getCardStyle = (index) => {
+        // For mobile carousel view
+        const getMobileCardStyle = (index) => {
           const totalItems = servicesData.length;
           let offset = index - currentIndex;
           if (offset > totalItems / 2) offset -= totalItems;
@@ -910,6 +988,16 @@
           };
         };
 
+        // For desktop auto-moving ticker
+        const getDesktopCarouselTransform = () => {
+          // Calculate the width of one item including padding
+          const itemWidth = containerRef.current ? containerRef.current.querySelector('.desktop-carousel-item').offsetWidth : 0;
+          // We want to show a continuous loop, so we'll duplicate items
+          // The transform will shift by one item's width
+          return `translateX(-${currentIndex * itemWidth}px)`;
+        };
+
+
         return (
           <React.Fragment>
             {/* Mobile Carousel View */}
@@ -931,7 +1019,7 @@
                   <div
                     key={idx}
                     className="absolute w-[200px] h-[350px] top-1/2 left-1/2"
-                    style={getCardStyle(idx)}
+                    style={getMobileCardStyle(idx)}
                   >
                     <ServiceCard service={service} />
                   </div>
@@ -939,16 +1027,24 @@
               </div>
             </div>
 
-            {/* Desktop Grid View - Updated to show all 6 in a row */}
-            <div className="hidden md:flex justify-center items-center w-full gap-4 px-8">
-              {servicesData.map((service, index) => (
-                <div
-                  key={index}
-                  className="flex-1 min-w-[150px] max-w-[200px] transition-transform duration-300 hover:scale-105"
-                >
-                  <ServiceCard service={service} />
-                </div>
-              ))}
+            {/* Desktop Auto-Moving Ticker View */}
+            <div
+              className="hidden md:block desktop-carousel-container"
+              onMouseEnter={stopAutoScroll}
+              onMouseLeave={startAutoScroll}
+            >
+              <div
+                ref={containerRef}
+                className="desktop-carousel-inner"
+                style={{ transform: getDesktopCarouselTransform() }}
+              >
+                {/* Duplicate items to create a seamless loop effect */}
+                {[...servicesData, ...servicesData].map((service, index) => (
+                  <div key={index} className="desktop-carousel-item">
+                    <ServiceCard service={service} />
+                  </div>
+                ))}
+              </div>
             </div>
           </React.Fragment>
         );

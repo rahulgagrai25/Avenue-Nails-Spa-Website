@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Avenue Nails & Spa - Nail Services</title>
+    <title>Avenue Nails & Spa - Nails Services</title>
     <!-- fonts Cormorant garamond -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -435,8 +435,8 @@
       background-color: var(--secondary-dark-rose);
     }
 
-    /* Cart Icon and Count Styling */
-    #cart-icon, #mobile-cart-icon {
+    /* Cart Icon and Count Styling for Desktop */
+    #cart-icon-desktop {
       position: relative;
       display: inline-flex;
       align-items: center;
@@ -446,7 +446,34 @@
       gap: 5px;
     }
 
-    #cart-count, #mobile-cart-count {
+    #cart-count-desktop {
+      background-color: var(--secondary-darker-rose);
+      color: var(--primary-white);
+      border-radius: 50%;
+      padding: 2px 7px;
+      font-size: 11px;
+      position: absolute;
+      top: -8px;
+      right: -15px;
+      min-width: 20px;
+      text-align: center;
+      line-height: 1;
+    }
+
+    /* Cart Icon and Count Styling for Mobile */
+    #cart-icon-mobile {
+      position: relative;
+      display: none; /* Hidden by default, shown on mobile */
+      align-items: center;
+      background-color: var(--secondary-light-pink);
+      padding: 5px 20px;
+      border-radius: 15px;
+      gap: 5px;
+      text-decoration: none; /* Ensure it looks like a link */
+      color: var(--primary-dark-gray); /* Inherit color or set explicitly */
+    }
+
+    #cart-count-mobile {
       background-color: var(--secondary-darker-rose);
       color: var(--primary-white);
       border-radius: 50%;
@@ -502,14 +529,27 @@
       .navbar {
         padding: 18px 5%;
         height: 100px;
+        justify-content: space-between; /* Keep logo left, other items right */
       }
       
       .nav-links {
-        display: none;
+        display: none; /* Hide desktop nav links */
       }
       
       .hamburger-menu {
-        display: flex;
+        display: flex; /* Show hamburger */
+        margin-left: 15px; /* Space between cart and hamburger */
+      }
+
+      /* Hide desktop cart icon on mobile */
+      #cart-icon-desktop {
+        display: none;
+      }
+
+      /* Show mobile cart icon on mobile */
+      #cart-icon-mobile {
+        display: inline-flex;
+        margin-right: -35px; /* Space between cart and hamburger */
       }
       
       .facials-section {
@@ -564,7 +604,7 @@
         padding: 6px 10px;
         font-size: 12px;
       }
-      #cart-count, #mobile-cart-count {
+      #cart-count-desktop, #cart-count-mobile { /* Apply to both for consistency */
         font-size: 10px;
         padding: 1px 6px;
         min-width: 18px;
@@ -658,12 +698,18 @@
           <li><a href="./index.html#our-story">Our Story</a></li>
           <li><a href="./index.html#gallery">Gallery</a></li>
           <li><a href="./index.html#booking">Contact</a></li>
+          <!-- Desktop cart icon -->
           <li>
-            <a href="billing.html" id="cart-icon">
-              🛒 <span id="cart-count">0</span>
+            <a href="billing.html" id="cart-icon-desktop">
+              🛒 <span id="cart-count-desktop">0</span>
             </a>
           </li>
         </ul>
+
+        <!-- Mobile cart icon - hidden on desktop, shown on mobile -->
+        <a href="billing.html" id="cart-icon-mobile">
+          🛒 <span id="cart-count-mobile">0</span>
+        </a>
 
         <div class="hamburger-menu">
           <span></span>
@@ -680,11 +726,6 @@
           <li><a href="./index.html#our-story">Our Story</a></li>
           <li><a href="./index.html#gallery">Gallery</a></li>
           <li><a href="./index.html#booking">Contact</a></li>
-          <li>
-            <a href="billing.html" id="mobile-cart-icon">
-              🛒 <span id="mobile-cart-count">0</span>
-            </a>
-          </li>
         </ul>
       </div>
     </header>
@@ -1110,14 +1151,18 @@
     // Calculate initial item count by summing quantities of items in cart
     let cartItemCount = cart.reduce((total, item) => total + item.quantity, 0); 
 
-    const cartCountElement = document.getElementById('cart-count');
-    const mobileCartCountElement = document.getElementById('mobile-cart-count');
+    const cartCountDesktopElement = document.getElementById('cart-count-desktop');
+    const cartCountMobileElement = document.getElementById('cart-count-mobile');
     const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
 
     // Function to update the cart count display and save to localStorage
     function updateCartCount() {
-      cartCountElement.textContent = cartItemCount;
-      mobileCartCountElement.textContent = cartItemCount;
+      if (cartCountDesktopElement) {
+        cartCountDesktopElement.textContent = cartItemCount;
+      }
+      if (cartCountMobileElement) {
+        cartCountMobileElement.textContent = cartItemCount;
+      }
       localStorage.setItem('cart', JSON.stringify(cart)); // Save cart to localStorage
     }
 
@@ -1134,8 +1179,8 @@
       
       cartItemCount++; // Increment total item count
       updateCartCount(); // Update display and localStorage
-      console.log('Current Cart:', cart); // For debugging: view cart contents in console
-      alert(`${itemName} added to cart! Total items: ${cartItemCount}`);
+      //console.log('Current Cart:', cart); // For debugging: view cart contents in console
+      //alert(`${itemName} added to cart! Total items: ${cartItemCount}`);
     }
 
     // Add event listeners to all "Add to Cart" buttons

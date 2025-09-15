@@ -549,6 +549,29 @@
       margin-bottom: 15px;
     }
 
+    /* Notification Message */
+    .add-to-cart-notification {
+      position: absolute;
+      background-color: var(--secondary-darker-rose);
+      color: var(--primary-white);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      pointer-events: none; /* Allow clicks to pass through */
+      white-space: nowrap;
+      z-index: 10;
+      transform: translateY(-100%); /* Position above the button */
+      left: 50%;
+      transform: translateX(-50%) translateY(-100%);
+    }
+
+    .add-to-cart-container {
+      position: relative; /* Needed for absolute positioning of notification */
+      display: inline-block; /* To wrap around the button and notification */
+    }
+
     /* Responsive Design */
     @media (max-width: 1024px) {
       
@@ -705,7 +728,7 @@
         font-size: 15px;
       }
       
-      .facials-note {
+      .facials-card p {
         font-size: 12px;
       }
       
@@ -804,6 +827,7 @@
                   <strong class="fc-price">$120</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Hybrid Full Set" data-item-price="120">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Hybrid Full Set">-</button>
                       <span class="item-quantity">0</span>
@@ -825,6 +849,7 @@
                   <strong class="fc-price">$75</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Hybrid Fill - 2 weeks" data-item-price="75">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Hybrid Fill - 2 weeks">-</button>
                       <span class="item-quantity">0</span>
@@ -846,6 +871,7 @@
                   <strong class="fc-price">$85</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Hybrid Fill - 3 weeks" data-item-price="85">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Hybrid Fill - 3 weeks">-</button>
                       <span class="item-quantity">0</span>
@@ -867,6 +893,7 @@
                   <strong class="fc-price">$130</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Volume Full Set" data-item-price="130">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Volume Full Set">-</button>
                       <span class="item-quantity">0</span>
@@ -888,6 +915,7 @@
                   <strong class="fc-price">$85</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Volume Fill - 2 weeks" data-item-price="85">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Volume Fill - 2 weeks">-</button>
                       <span class="item-quantity">0</span>
@@ -909,6 +937,7 @@
                   <strong class="fc-price">$95</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Volume Fill - 3 weeks" data-item-price="95">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Volume Fill - 3 weeks">-</button>
                       <span class="item-quantity">0</span>
@@ -930,6 +959,7 @@
                   <strong class="fc-price">$170</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Mega Volume Full Set" data-item-price="170">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Mega Volume Full Set">-</button>
                       <span class="item-quantity">0</span>
@@ -951,6 +981,7 @@
                   <strong class="fc-price">$105</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Mega Volume Fill - 2 weeks" data-item-price="105">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Mega Volume Fill - 2 weeks">-</button>
                       <span class="item-quantity">0</span>
@@ -972,6 +1003,7 @@
                   <strong class="fc-price">$125</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Mega Volume Fill - 3 weeks" data-item-price="125">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Mega Volume Fill - 3 weeks">-</button>
                       <span class="item-quantity">0</span>
@@ -995,6 +1027,7 @@
                   <strong class="fc-price">$75</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Lash Lift" data-item-price="75">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Lash Lift">-</button>
                       <span class="item-quantity">0</span>
@@ -1016,6 +1049,7 @@
                   <strong class="fc-price">$100</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Lash Lift + Tint" data-item-price="100">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Lash Lift + Tint">-</button>
                       <span class="item-quantity">0</span>
@@ -1039,6 +1073,7 @@
                   <strong class="fc-price">$20</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Lash Extension Removal" data-item-price="20">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Lash Extension Removal">-</button>
                       <span class="item-quantity">0</span>
@@ -1147,7 +1182,7 @@
     }
 
     // Function to add an item to the cart
-    function addItemToCart(itemName, itemPrice) {
+    function addItemToCart(itemName, itemPrice, buttonElement) {
       const existingItem = cart.find(item => item.name === itemName);
 
       if (existingItem) {
@@ -1156,6 +1191,7 @@
         cart.push({ name: itemName, price: itemPrice, quantity: 1 });
       }
       updateCartCount();
+      showNotification(buttonElement); // Show notification
     }
 
     // Function to decrease item quantity
@@ -1172,12 +1208,24 @@
       updateCartCount();
     }
 
+    // Function to show "Added" notification
+    function showNotification(buttonElement) {
+      const container = buttonElement.closest('.add-to-cart-container');
+      const notification = container.querySelector('.add-to-cart-notification');
+      if (notification) {
+        notification.style.opacity = '1';
+        setTimeout(() => {
+          notification.style.opacity = '0';
+        }, 1500); // Notification disappears after 1.5 seconds
+      }
+    }
+
     // Add event listeners to all "Add to Cart" buttons
     addToCartButtons.forEach(button => {
       button.addEventListener('click', (event) => {
         const itemName = event.target.dataset.itemName;
         const itemPrice = parseFloat(event.target.dataset.itemPrice);
-        addItemToCart(itemName, itemPrice);
+        addItemToCart(itemName, itemPrice, event.target); // Pass the button element
       });
     });
 
@@ -1196,6 +1244,7 @@
           cart.push({ name: itemName, price: itemPrice, quantity: 1 });
         }
         updateCartCount();
+        showNotification(event.target); // Show notification
       });
     });
 

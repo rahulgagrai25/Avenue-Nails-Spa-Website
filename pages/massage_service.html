@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Avenue Nails & Spa - Massage Services</title>
+    <title>Avenue Nails & Spa - Lashes</title>
     <!-- fonts Cormorant garamond -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -280,15 +280,15 @@
     .glass-circle-1 {
       width: 130px;
       height: 130px;
-      top: 190px;
-      left:970px; /* This will be relative to the image wrap, might need adjustment */
+      top: 180px;
+      left:960px; /* This will be relative to the image wrap, might need adjustment */
       background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(217, 32, 97, 0.118) 100%);
     }
     
     .glass-circle-2 {
       width: 120px;
       height: 120px;
-      bottom: 20px;
+      bottom: 30px;
       left: 420px; /* This will be relative to the image wrap, might need adjustment */
       background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(217, 32, 97, 0.118) 100%);
     }
@@ -525,9 +525,8 @@
       line-height: 1;
     }
 
-
-    /* New CSS for 3-column lash services grid (re-used for massage) */
-    .lash-services-grid { /* Renamed to .services-grid for general use if needed */
+    /* New CSS for 3-column lash services grid */
+    .lash-services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
       gap: 10px; /* Smaller gap between cards within the grid */
@@ -539,7 +538,7 @@
       width: 100%; /* Ensure it takes full width of its parent */
     }
 
-    .lash-category-title { /* Renamed to .service-category-title for general use if needed */
+    .lash-category-title {
       grid-column: 1 / -1; /* Span across all columns */
       text-align: center;
       font-family: "Cormorant Garamond", serif;
@@ -548,6 +547,29 @@
       font-weight: 600;
       margin-top: 20px;
       margin-bottom: 15px;
+    }
+
+    /* Notification Message */
+    .add-to-cart-notification {
+      position: absolute;
+      background-color: var(--secondary-darker-rose);
+      color: var(--primary-white);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      pointer-events: none; /* Allow clicks to pass through */
+      white-space: nowrap;
+      z-index: 10;
+      transform: translateY(-100%); /* Position above the button */
+      left: 50%;
+      transform: translateX(-50%) translateY(-100%);
+    }
+
+    .add-to-cart-container {
+      position: relative; /* Needed for absolute positioning of notification */
+      display: inline-block; /* To wrap around the button and notification */
     }
 
     /* Responsive Design */
@@ -706,7 +728,7 @@
         font-size: 15px;
       }
       
-      .facials-note {
+      .facials-card p {
         font-size: 12px;
       }
       
@@ -718,7 +740,7 @@
         font-size: 20px;
       }
     }
-  </style>
+    </style>
   </head>
   <body>
     <header>
@@ -769,48 +791,47 @@
       </div>
     </header>
 
-    <!-- Massage Services Section -->
-    <section class="facials-section" id="massages">
+    <!-- Facial Services Section -->
+    <section class="facials-section" id="facials">
       <div class="facials-container">
         <div class="facials-header">
-          <h2>Massage <span>Services</span> (By Appointment Only)</h2>
-          <p>
-            Indulge in therapeutic massages designed to relax your body, ease tension, and rejuvenate your spirit.
-          </p>
+          <h2>Lashes &<span>Brows</span></h2>
+          <p>Define your features with expertly shaped brows and lush lashes.</p>
         </div>
 
         <div class="facials-grid">
-          <!-- Image centered and above the menu -->
+          <!-- Image is now centered and above the menu -->
           <div class="glass-circle glass-circle-1"></div>
           <div class="glass-circle glass-circle-2"></div>
-          <figure class="facials-image-wrap" aria-label="Massage therapy room">
+          <figure class="facials-image-wrap" aria-label="Lashes and Brows session">
             <img
-              src="https://spaworldhouston.com/wp-content/uploads/2023/05/girl-at-her-first-massage.jpg"
-              alt="Massage therapy session"
+              src="https://media6.ppl-media.com//tr:h-235,w-235,c-at_max,dpr-2/static/img/product/392724/matt-look-eye-makeup-curl-and-volume-waterproof-false-lash-mascara-black-12ml_8_display_1692019892_796f5635.jpg"
+              alt="Lashes and Brows session"
             />
           </figure>
 
           <!-- Services list container -->
           <div class="facials-card-list">
             <div class="lash-services-grid">
-              <h2 class="lash-category-title">Swedish Relaxation Massage</h2>
+              <h2 class="lash-category-title">Lash Extensions</h2>
 
               <article class="facials-card">
                 <div class="fc-left">
-                  <span class="fc-icon">😌</span>
+                  <span class="fc-icon">✨</span>
                   <div>
-                    <h3>60 min</h3>
-                    <p>Best for stress relief, improved sleep.</p>
+                    <h3>Hybrid Full Set</h3>
+                    <p>A blend of classic and volume lashes for a fuller, textured look.</p>
                   </div>
                 </div>
                 <div class="fc-right">
-                  <strong class="fc-price">$99.75</strong>
+                  <strong class="fc-price">$120</strong>
                   <div class="add-to-cart-container">
-                    <button class="add-to-cart-btn" data-item-name="Swedish Relaxation Massage (60 min)" data-item-price="99.75">Add to Cart</button>
+                    <button class="add-to-cart-btn" data-item-name="Hybrid Full Set" data-item-price="120">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
-                      <button class="decrease-quantity" data-item-name="Swedish Relaxation Massage (60 min)">-</button>
+                      <button class="decrease-quantity" data-item-name="Hybrid Full Set">-</button>
                       <span class="item-quantity">0</span>
-                      <button class="increase-quantity" data-item-name="Swedish Relaxation Massage (60 min)">+</button>
+                      <button class="increase-quantity" data-item-name="Hybrid Full Set">+</button>
                     </div>
                   </div>
                 </div>
@@ -818,43 +839,21 @@
 
               <article class="facials-card">
                 <div class="fc-left">
-                  <span class="fc-icon">😴</span>
+                  <span class="fc-icon">💎</span>
                   <div>
-                    <h3>90 min</h3>
-                    <p>Best for stress relief, improved sleep.</p>
+                    <h3>Hybrid Fill - 2 weeks</h3>
+                    <p>Maintenance for Hybrid Lash Extensions (within 2 weeks).</p>
                   </div>
                 </div>
                 <div class="fc-right">
-                  <strong class="fc-price">$147</strong>
+                  <strong class="fc-price">$75</strong>
                   <div class="add-to-cart-container">
-                    <button class="add-to-cart-btn" data-item-name="Swedish Relaxation Massage (90 min)" data-item-price="147">Add to Cart</button>
+                    <button class="add-to-cart-btn" data-item-name="Hybrid Fill - 2 weeks" data-item-price="75">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
-                      <button class="decrease-quantity" data-item-name="Swedish Relaxation Massage (90 min)">-</button>
+                      <button class="decrease-quantity" data-item-name="Hybrid Fill - 2 weeks">-</button>
                       <span class="item-quantity">0</span>
-                      <button class="increase-quantity" data-item-name="Swedish Relaxation Massage (90 min)">+</button>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <h2 class="lash-category-title">Deep Tissue Massage</h2>
-
-              <article class="facials-card">
-                <div class="fc-left">
-                  <span class="fc-icon">💪</span>
-                  <div>
-                    <h3>60 min</h3>
-                    <p>Best for tight shoulders, lower back pain.</p>
-                  </div>
-                </div>
-                <div class="fc-right">
-                  <strong class="fc-price">$110.25</strong>
-                  <div class="add-to-cart-container">
-                    <button class="add-to-cart-btn" data-item-name="Deep Tissue Massage (60 min)" data-item-price="110.25">Add to Cart</button>
-                    <div class="quantity-controls" style="display: none;">
-                      <button class="decrease-quantity" data-item-name="Deep Tissue Massage (60 min)">-</button>
-                      <span class="item-quantity">0</span>
-                      <button class="increase-quantity" data-item-name="Deep Tissue Massage (60 min)">+</button>
+                      <button class="increase-quantity" data-item-name="Hybrid Fill - 2 weeks">+</button>
                     </div>
                   </div>
                 </div>
@@ -862,43 +861,223 @@
 
               <article class="facials-card">
                 <div class="fc-left">
-                  <span class="fc-icon">🏋️</span>
+                  <span class="fc-icon">💎</span>
                   <div>
-                    <h3>90 min</h3>
-                    <p>Best for tight shoulders, lower back pain.</p>
+                    <h3>Hybrid Fill - 3 weeks</h3>
+                    <p>Maintenance for Hybrid Lash Extensions (within 3 weeks).</p>
                   </div>
                 </div>
                 <div class="fc-right">
-                  <strong class="fc-price">$162.75</strong>
+                  <strong class="fc-price">$85</strong>
                   <div class="add-to-cart-container">
-                    <button class="add-to-cart-btn" data-item-name="Deep Tissue Massage (90 min)" data-item-price="162.75">Add to Cart</button>
+                    <button class="add-to-cart-btn" data-item-name="Hybrid Fill - 3 weeks" data-item-price="85">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
-                      <button class="decrease-quantity" data-item-name="Deep Tissue Massage (90 min)">-</button>
+                      <button class="decrease-quantity" data-item-name="Hybrid Fill - 3 weeks">-</button>
                       <span class="item-quantity">0</span>
-                      <button class="increase-quantity" data-item-name="Deep Tissue Massage (90 min)">+</button>
+                      <button class="increase-quantity" data-item-name="Hybrid Fill - 3 weeks">+</button>
                     </div>
                   </div>
                 </div>
               </article>
 
-              <h2 class="lash-category-title">Lymphatic Drainage Massage</h2>
-
               <article class="facials-card">
                 <div class="fc-left">
-                  <span class="fc-icon">💧</span>
+                  <span class="fc-icon">🌟</span>
                   <div>
-                    <h3>60 min</h3>
-                    <p>Reduces swelling, detoxification, post-surgery recovery, cellulite reduction, eases sinus congestion.</p>
+                    <h3>Volume Full Set</h3>
+                    <p>Multiple lightweight lashes applied to each natural lash for a dramatic, full look.</p>
                   </div>
                 </div>
                 <div class="fc-right">
-                  <strong class="fc-price">$110.25</strong>
+                  <strong class="fc-price">$130</strong>
                   <div class="add-to-cart-container">
-                    <button class="add-to-cart-btn" data-item-name="Lymphatic Drainage Massage (60 min)" data-item-price="110.25">Add to Cart</button>
+                    <button class="add-to-cart-btn" data-item-name="Volume Full Set" data-item-price="130">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
-                      <button class="decrease-quantity" data-item-name="Lymphatic Drainage Massage (60 min)">-</button>
+                      <button class="decrease-quantity" data-item-name="Volume Full Set">-</button>
                       <span class="item-quantity">0</span>
-                      <button class="increase-quantity" data-item-name="Lymphatic Drainage Massage (60 min)">+</button>
+                      <button class="increase-quantity" data-item-name="Volume Full Set">+</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="facials-card">
+                <div class="fc-left">
+                  <span class="fc-icon">✨</span>
+                  <div>
+                    <h3>Volume Fill - 2 weeks</h3>
+                    <p>Maintenance for Volume Lash Extensions (within 2 weeks).</p>
+                  </div>
+                </div>
+                <div class="fc-right">
+                  <strong class="fc-price">$85</strong>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Volume Fill - 2 weeks" data-item-price="85">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Volume Fill - 2 weeks">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Volume Fill - 2 weeks">+</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="facials-card">
+                <div class="fc-left">
+                  <span class="fc-icon">✨</span>
+                  <div>
+                    <h3>Volume Fill - 3 weeks</h3>
+                    <p>Maintenance for Volume Lash Extensions (within 3 weeks).</p>
+                  </div>
+                </div>
+                <div class="fc-right">
+                  <strong class="fc-price">$95</strong>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Volume Fill - 3 weeks" data-item-price="95">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Volume Fill - 3 weeks">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Volume Fill - 3 weeks">+</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="facials-card">
+                <div class="fc-left">
+                  <span class="fc-icon">👑</span>
+                  <div>
+                    <h3>Mega Volume Full Set</h3>
+                    <p>Ultra-full and dense lash application for maximum impact.</p>
+                  </div>
+                </div>
+                <div class="fc-right">
+                  <strong class="fc-price">$170</strong>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Mega Volume Full Set" data-item-price="170">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Mega Volume Full Set">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Mega Volume Full Set">+</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="facials-card">
+                <div class="fc-left">
+                  <span class="fc-icon">👑</span>
+                  <div>
+                    <h3>Mega Volume Fill - 2 weeks</h3>
+                    <p>Maintenance for Mega Volume Lash Extensions (within 2 weeks).</p>
+                  </div>
+                </div>
+                <div class="fc-right">
+                  <strong class="fc-price">$105</strong>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Mega Volume Fill - 2 weeks" data-item-price="105">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Mega Volume Fill - 2 weeks">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Mega Volume Fill - 2 weeks">+</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="facials-card">
+                <div class="fc-left">
+                  <span class="fc-icon">👑</span>
+                  <div>
+                    <h3>Mega Volume Fill - 3 weeks</h3>
+                    <p>Maintenance for Mega Volume Lash Extensions (within 3 weeks).</p>
+                  </div>
+                </div>
+                <div class="fc-right">
+                  <strong class="fc-price">$125</strong>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Mega Volume Fill - 3 weeks" data-item-price="125">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Mega Volume Fill - 3 weeks">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Mega Volume Fill - 3 weeks">+</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <h2 class="lash-category-title">Lash Lifts</h2>
+
+              <article class="facials-card">
+                <div class="fc-left">
+                  <span class="fc-icon">⬆️</span>
+                  <div>
+                    <h3>Lash Lift</h3>
+                    <p>A perm for your natural lashes, creating a beautiful curl and lift.</p>
+                  </div>
+                </div>
+                <div class="fc-right">
+                  <strong class="fc-price">$75</strong>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Lash Lift" data-item-price="75">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Lash Lift">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Lash Lift">+</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="facials-card">
+                <div class="fc-left">
+                  <span class="fc-icon">🎨</span>
+                  <div>
+                    <h3>Lash Lift + Tint</h3>
+                    <p>Lash lift combined with a tint to darken and enhance your natural lashes.</p>
+                  </div>
+                </div>
+                <div class="fc-right">
+                  <strong class="fc-price">$100</strong>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Lash Lift + Tint" data-item-price="100">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Lash Lift + Tint">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Lash Lift + Tint">+</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <h2 class="lash-category-title">Other Lash Services</h2>
+
+              <article class="facials-card">
+                <div class="fc-left">
+                  <span class="fc-icon">➖</span>
+                  <div>
+                    <h3>Lash Extension Removal</h3>
+                    <p>Safe and gentle removal of lash extensions.</p>
+                  </div>
+                </div>
+                <div class="fc-right">
+                  <strong class="fc-price">$20</strong>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Lash Extension Removal" data-item-price="20">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Lash Extension Removal">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Lash Extension Removal">+</button>
                     </div>
                   </div>
                 </div>
@@ -906,7 +1085,8 @@
             </div>
 
             <p class="facials-note">
-              Benefits: reduces swelling, detoxification, post-surgery recovery, cellulite reduction, eases sinus congestion.
+              All treatments include a complimentary consultation and aftercare
+              recommendations.
             </p>
 
             <a href="billing.html" class="facials-cta">Book Your Appointment</a>
@@ -1002,7 +1182,7 @@
     }
 
     // Function to add an item to the cart
-    function addItemToCart(itemName, itemPrice) {
+    function addItemToCart(itemName, itemPrice, buttonElement) {
       const existingItem = cart.find(item => item.name === itemName);
 
       if (existingItem) {
@@ -1011,6 +1191,7 @@
         cart.push({ name: itemName, price: itemPrice, quantity: 1 });
       }
       updateCartCount();
+      showNotification(buttonElement); // Show notification
     }
 
     // Function to decrease item quantity
@@ -1027,12 +1208,24 @@
       updateCartCount();
     }
 
+    // Function to show "Added" notification
+    function showNotification(buttonElement) {
+      const container = buttonElement.closest('.add-to-cart-container');
+      const notification = container.querySelector('.add-to-cart-notification');
+      if (notification) {
+        notification.style.opacity = '1';
+        setTimeout(() => {
+          notification.style.opacity = '0';
+        }, 1500); // Notification disappears after 1.5 seconds
+      }
+    }
+
     // Add event listeners to all "Add to Cart" buttons
     addToCartButtons.forEach(button => {
       button.addEventListener('click', (event) => {
         const itemName = event.target.dataset.itemName;
         const itemPrice = parseFloat(event.target.dataset.itemPrice);
-        addItemToCart(itemName, itemPrice);
+        addItemToCart(itemName, itemPrice, event.target); // Pass the button element
       });
     });
 
@@ -1051,6 +1244,7 @@
           cart.push({ name: itemName, price: itemPrice, quantity: 1 });
         }
         updateCartCount();
+        showNotification(event.target); // Show notification
       });
     });
 

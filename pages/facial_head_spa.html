@@ -551,6 +551,29 @@
       margin-bottom: 15px;
     }
 
+    /* Notification Message */
+    .add-to-cart-notification {
+      position: absolute;
+      background-color: var(--secondary-darker-rose);
+      color: var(--primary-white);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      pointer-events: none; /* Allow clicks to pass through */
+      white-space: nowrap;
+      z-index: 10;
+      transform: translateY(-100%); /* Position above the button */
+      left: 50%;
+      transform: translateX(-50%) translateY(-100%);
+    }
+
+    .add-to-cart-container {
+      position: relative; /* Needed for absolute positioning of notification */
+      display: inline-block; /* To wrap around the button and notification */
+    }
+
     /* Responsive Design */
     @media (max-width: 1024px) {
       
@@ -808,6 +831,7 @@
                   <strong class="fc-price">$45</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Basic Head Spa (45 min)" data-item-price="45">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Basic Head Spa (45 min)">-</button>
                       <span class="item-quantity">0</span>
@@ -829,6 +853,7 @@
                   <strong class="fc-price">$115</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Scalp Detox (90 min)" data-item-price="115">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Scalp Detox (90 min)">-</button>
                       <span class="item-quantity">0</span>
@@ -852,6 +877,7 @@
                   <strong class="fc-price">$85</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Classic Facial (60 min)" data-item-price="85">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Classic Facial (60 min)">-</button>
                       <span class="item-quantity">0</span>
@@ -962,7 +988,7 @@
     }
 
     // Function to add an item to the cart
-    function addItemToCart(itemName, itemPrice) {
+    function addItemToCart(itemName, itemPrice, buttonElement) {
       const existingItem = cart.find(item => item.name === itemName);
 
       if (existingItem) {
@@ -971,6 +997,7 @@
         cart.push({ name: itemName, price: itemPrice, quantity: 1 });
       }
       updateCartCount();
+      showNotification(buttonElement); // Show notification
     }
 
     // Function to decrease item quantity
@@ -987,12 +1014,24 @@
       updateCartCount();
     }
 
+    // Function to show "Added" notification
+    function showNotification(buttonElement) {
+      const container = buttonElement.closest('.add-to-cart-container');
+      const notification = container.querySelector('.add-to-cart-notification');
+      if (notification) {
+        notification.style.opacity = '1';
+        setTimeout(() => {
+          notification.style.opacity = '0';
+        }, 1500); // Notification disappears after 1.5 seconds
+      }
+    }
+
     // Add event listeners to all "Add to Cart" buttons
     addToCartButtons.forEach(button => {
       button.addEventListener('click', (event) => {
         const itemName = event.target.dataset.itemName;
         const itemPrice = parseFloat(event.target.dataset.itemPrice);
-        addItemToCart(itemName, itemPrice);
+        addItemToCart(itemName, itemPrice, event.target); // Pass the button element
       });
     });
 
@@ -1011,6 +1050,7 @@
           cart.push({ name: itemName, price: itemPrice, quantity: 1 });
         }
         updateCartCount();
+        showNotification(event.target); // Show notification
       });
     });
 

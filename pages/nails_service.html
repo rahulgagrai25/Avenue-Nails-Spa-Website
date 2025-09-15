@@ -549,6 +549,29 @@
       margin-bottom: 15px;
     }
 
+    /* Notification Message */
+    .add-to-cart-notification {
+      position: absolute;
+      background-color: var(--secondary-darker-rose);
+      color: var(--primary-white);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      pointer-events: none; /* Allow clicks to pass through */
+      white-space: nowrap;
+      z-index: 10;
+      transform: translateY(-100%); /* Position above the button */
+      left: 50%;
+      transform: translateX(-50%) translateY(-100%);
+    }
+
+    .add-to-cart-container {
+      position: relative; /* Needed for absolute positioning of notification */
+      display: inline-block; /* To wrap around the button and notification */
+    }
+
     /* Responsive Design */
     @media (max-width: 1024px) {
       
@@ -705,7 +728,7 @@
         font-size: 15px;
       }
       
-      .facials-note {
+      .facials-card p {
         font-size: 12px;
       }
       
@@ -806,6 +829,7 @@
                   <strong class="fc-price">$25</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Classic Manicure" data-item-price="25">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Classic Manicure">-</button>
                       <span class="item-quantity">0</span>
@@ -827,6 +851,7 @@
                   <strong class="fc-price">$20</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Classic Kid Manicure" data-item-price="20">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Classic Kid Manicure">-</button>
                       <span class="item-quantity">0</span>
@@ -850,6 +875,7 @@
                   <strong class="fc-price">$40</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Classic Touch Pedicure" data-item-price="40">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Classic Touch Pedicure">-</button>
                       <span class="item-quantity">0</span>
@@ -871,6 +897,7 @@
                   <strong class="fc-price">$30</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Classic Kid Pedicure" data-item-price="30">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Classic Kid Pedicure">-</button>
                       <span class="item-quantity">0</span>
@@ -892,6 +919,7 @@
                   <strong class="fc-price">$55</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Signature Spa Pedicure" data-item-price="55">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Signature Spa Pedicure">-</button>
                       <span class="item-quantity">0</span>
@@ -913,6 +941,7 @@
                   <strong class="fc-price">$85</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="VIP Retreat Pedicure" data-item-price="85">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="VIP Retreat Pedicure">-</button>
                       <span class="item-quantity">0</span>
@@ -936,6 +965,7 @@
                   <strong class="fc-price">$60 & up</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Acrylic New Set Full Color" data-item-price="60">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Acrylic New Set Full Color">-</button>
                       <span class="item-quantity">0</span>
@@ -957,6 +987,7 @@
                   <strong class="fc-price">$70 & up</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Acrylic New Set Ombre" data-item-price="70">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Acrylic New Set Ombre">-</button>
                       <span class="item-quantity">0</span>
@@ -978,6 +1009,7 @@
                   <strong class="fc-price">$50 & up</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Acrylic Refill Full Color" data-item-price="50">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Acrylic Refill Full Color">-</button>
                       <span class="item-quantity">0</span>
@@ -999,6 +1031,7 @@
                   <strong class="fc-price">$60 & up</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Acrylic Refill Ombre" data-item-price="60">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Acrylic Refill Ombre">-</button>
                       <span class="item-quantity">0</span>
@@ -1020,6 +1053,7 @@
                   <strong class="fc-price">$60</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Toe Acrylic" data-item-price="60">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Toe Acrylic">-</button>
                       <span class="item-quantity">0</span>
@@ -1043,6 +1077,7 @@
                   <strong class="fc-price">$65 & up</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="UV Gel New Set Full Color" data-item-price="65">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="UV Gel New Set Full Color">-</button>
                       <span class="item-quantity">0</span>
@@ -1064,6 +1099,7 @@
                   <strong class="fc-price">$55</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="UV Gel Refill Full Color" data-item-price="55">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="UV Gel Refill Full Color">-</button>
                       <span class="item-quantity">0</span>
@@ -1085,6 +1121,7 @@
                   <strong class="fc-price">$55 & up</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Dipping Nails" data-item-price="55">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Dipping Nails">-</button>
                       <span class="item-quantity">0</span>
@@ -1108,6 +1145,7 @@
                   <strong class="fc-price">$15</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Shellac Color Add-on" data-item-price="15">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Shellac Color Add-on">-</button>
                       <span class="item-quantity">0</span>
@@ -1129,6 +1167,7 @@
                   <strong class="fc-price">$6 & up</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Creative Nail Art" data-item-price="6">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Creative Nail Art">-</button>
                       <span class="item-quantity">0</span>
@@ -1150,6 +1189,7 @@
                   <strong class="fc-price">$10</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Chrome Toe Nails" data-item-price="10">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Chrome Toe Nails">-</button>
                       <span class="item-quantity">0</span>
@@ -1171,6 +1211,7 @@
                   <strong class="fc-price">$15</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Chrome Finger Nails" data-item-price="15">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Chrome Finger Nails">-</button>
                       <span class="item-quantity">0</span>
@@ -1192,6 +1233,7 @@
                   <strong class="fc-price">$10 & up</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Cat Eyes" data-item-price="10">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Cat Eyes">-</button>
                       <span class="item-quantity">0</span>
@@ -1213,6 +1255,7 @@
                   <strong class="fc-price">$10</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Paraffin Wax" data-item-price="10">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Paraffin Wax">-</button>
                       <span class="item-quantity">0</span>
@@ -1234,6 +1277,7 @@
                   <strong class="fc-price">$10</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Hot Stone Massage" data-item-price="10">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Hot Stone Massage">-</button>
                       <span class="item-quantity">0</span>
@@ -1255,6 +1299,7 @@
                   <strong class="fc-price">$10</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Cut Toes/Nails" data-item-price="10">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Cut Toes/Nails">-</button>
                       <span class="item-quantity">0</span>
@@ -1276,6 +1321,7 @@
                   <strong class="fc-price">$10 / $20</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Shellac Removal/Soak Off" data-item-price="10">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Shellac Removal/Soak Off">-</button>
                       <span class="item-quantity">0</span>
@@ -1297,6 +1343,7 @@
                   <strong class="fc-price">$15 / $25</strong>
                   <div class="add-to-cart-container">
                     <button class="add-to-cart-btn" data-item-name="Acrylic Removal/Soak Off" data-item-price="15">Add to Cart</button>
+                    <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Acrylic Removal/Soak Off">-</button>
                       <span class="item-quantity">0</span>
@@ -1406,7 +1453,7 @@
     }
 
     // Function to add an item to the cart
-    function addItemToCart(itemName, itemPrice) {
+    function addItemToCart(itemName, itemPrice, buttonElement) {
       const existingItem = cart.find(item => item.name === itemName);
 
       if (existingItem) {
@@ -1415,6 +1462,7 @@
         cart.push({ name: itemName, price: itemPrice, quantity: 1 });
       }
       updateCartCount();
+      showNotification(buttonElement); // Show notification
     }
 
     // Function to decrease item quantity
@@ -1431,12 +1479,24 @@
       updateCartCount();
     }
 
+    // Function to show "Added" notification
+    function showNotification(buttonElement) {
+      const container = buttonElement.closest('.add-to-cart-container');
+      const notification = container.querySelector('.add-to-cart-notification');
+      if (notification) {
+        notification.style.opacity = '1';
+        setTimeout(() => {
+          notification.style.opacity = '0';
+        }, 1500); // Notification disappears after 1.5 seconds
+      }
+    }
+
     // Add event listeners to all "Add to Cart" buttons
     addToCartButtons.forEach(button => {
       button.addEventListener('click', (event) => {
         const itemName = event.target.dataset.itemName;
         const itemPrice = parseFloat(event.target.dataset.itemPrice);
-        addItemToCart(itemName, itemPrice);
+        addItemToCart(itemName, itemPrice, event.target); // Pass the button element
       });
     });
 
@@ -1455,6 +1515,7 @@
           cart.push({ name: itemName, price: itemPrice, quantity: 1 });
         }
         updateCartCount();
+        showNotification(event.target); // Show notification
       });
     });
 

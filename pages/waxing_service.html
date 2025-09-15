@@ -435,6 +435,44 @@
       background-color: var(--secondary-dark-rose);
     }
 
+    /* Quantity controls */
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 5px;
+      justify-content: flex-end; /* Align to the right */
+    }
+
+    .quantity-controls button {
+      background-color: var(--secondary-light-pink);
+      color: var(--primary-dark-brown);
+      border: 1px solid var(--secondary-pale-rose);
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .quantity-controls button:hover {
+      background-color: var(--secondary-pale-rose);
+      color: var(--primary-white);
+    }
+
+    .quantity-controls span {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primary-dark-gray);
+      min-width: 20px;
+      text-align: center;
+    }
+
     /* Cart Icon and Count Styling for Desktop */
     #cart-icon-desktop {
       position: relative;
@@ -767,7 +805,14 @@
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$15</strong>
-                  <button class="add-to-cart-btn" data-item-name="Eyebrows Waxing" data-item-price="15">Add to Cart</button>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Eyebrows Waxing" data-item-price="15">Add to Cart</button>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Eyebrows Waxing">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Eyebrows Waxing">+</button>
+                    </div>
+                  </div>
                 </div>
               </article>
 
@@ -781,7 +826,14 @@
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$10</strong>
-                  <button class="add-to-cart-btn" data-item-name="Upper Lip Waxing" data-item-price="10">Add to Cart</button>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Upper Lip Waxing" data-item-price="10">Add to Cart</button>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Upper Lip Waxing">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Upper Lip Waxing">+</button>
+                    </div>
+                  </div>
                 </div>
               </article>
 
@@ -795,7 +847,14 @@
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$10</strong>
-                  <button class="add-to-cart-btn" data-item-name="Chin Waxing" data-item-price="10">Add to Cart</button>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Chin Waxing" data-item-price="10">Add to Cart</button>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Chin Waxing">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Chin Waxing">+</button>
+                    </div>
+                  </div>
                 </div>
               </article>
 
@@ -809,7 +868,14 @@
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$45</strong>
-                  <button class="add-to-cart-btn" data-item-name="Full Face Waxing" data-item-price="45">Add to Cart</button>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Full Face Waxing" data-item-price="45">Add to Cart</button>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Full Face Waxing">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Full Face Waxing">+</button>
+                    </div>
+                  </div>
                 </div>
               </article>
 
@@ -825,7 +891,14 @@
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$35</strong>
-                  <button class="add-to-cart-btn" data-item-name="Bikini Line Waxing" data-item-price="35">Add to Cart</button>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Bikini Line Waxing" data-item-price="35">Add to Cart</button>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Bikini Line Waxing">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Bikini Line Waxing">+</button>
+                    </div>
+                  </div>
                 </div>
               </article>
 
@@ -839,7 +912,14 @@
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$60</strong>
-                  <button class="add-to-cart-btn" data-item-name="Brazilian Waxing" data-item-price="60">Add to Cart</button>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Brazilian Waxing" data-item-price="60">Add to Cart</button>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Brazilian Waxing">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Brazilian Waxing">+</button>
+                    </div>
+                  </div>
                 </div>
               </article>
 
@@ -853,7 +933,14 @@
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$65</strong>
-                  <button class="add-to-cart-btn" data-item-name="Full Legs Waxing" data-item-price="65">Add to Cart</button>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Full Legs Waxing" data-item-price="65">Add to Cart</button>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Full Legs Waxing">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Full Legs Waxing">+</button>
+                    </div>
+                  </div>
                 </div>
               </article>
 
@@ -867,7 +954,14 @@
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$40</strong>
-                  <button class="add-to-cart-btn" data-item-name="Half Legs Waxing" data-item-price="40">Add to Cart</button>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Half Legs Waxing" data-item-price="40">Add to Cart</button>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Half Legs Waxing">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Half Legs Waxing">+</button>
+                    </div>
+                  </div>
                 </div>
               </article>
 
@@ -881,7 +975,14 @@
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$45</strong>
-                  <button class="add-to-cart-btn" data-item-name="Full Arms Waxing" data-item-price="45">Add to Cart</button>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Full Arms Waxing" data-item-price="45">Add to Cart</button>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Full Arms Waxing">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Full Arms Waxing">+</button>
+                    </div>
+                  </div>
                 </div>
               </article>
 
@@ -895,7 +996,14 @@
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$30</strong>
-                  <button class="add-to-cart-btn" data-item-name="Half Arms Waxing" data-item-price="30">Add to Cart</button>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Half Arms Waxing" data-item-price="30">Add to Cart</button>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Half Arms Waxing">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Half Arms Waxing">+</button>
+                    </div>
+                  </div>
                 </div>
               </article>
 
@@ -909,7 +1017,14 @@
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$20</strong>
-                  <button class="add-to-cart-btn" data-item-name="Underarms Waxing" data-item-price="20">Add to Cart</button>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Underarms Waxing" data-item-price="20">Add to Cart</button>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Underarms Waxing">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Underarms Waxing">+</button>
+                    </div>
+                  </div>
                 </div>
               </article>
 
@@ -923,7 +1038,14 @@
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$55</strong>
-                  <button class="add-to-cart-btn" data-item-name="Full Back Waxing" data-item-price="55">Add to Cart</button>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Full Back Waxing" data-item-price="55">Add to Cart</button>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Full Back Waxing">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Full Back Waxing">+</button>
+                    </div>
+                  </div>
                 </div>
               </article>
 
@@ -937,7 +1059,14 @@
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$45</strong>
-                  <button class="add-to-cart-btn" data-item-name="Chest Waxing" data-item-price="45">Add to Cart</button>
+                  <div class="add-to-cart-container">
+                    <button class="add-to-cart-btn" data-item-name="Chest Waxing" data-item-price="45">Add to Cart</button>
+                    <div class="quantity-controls" style="display: none;">
+                      <button class="decrease-quantity" data-item-name="Chest Waxing">-</button>
+                      <span class="item-quantity">0</span>
+                      <button class="increase-quantity" data-item-name="Chest Waxing">+</button>
+                    </div>
+                  </div>
                 </div>
               </article>
             </div>
@@ -993,9 +1122,11 @@
     const cartCountDesktopElement = document.getElementById('cart-count-desktop');
     const cartCountMobileElement = document.getElementById('cart-count-mobile');
     const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+    const quantityControls = document.querySelectorAll('.quantity-controls');
 
     // Function to update the cart count display and save to localStorage
     function updateCartCount() {
+      cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
       if (cartCountDesktopElement) {
         cartCountDesktopElement.textContent = cartItemCount;
       }
@@ -1003,36 +1134,102 @@
         cartCountMobileElement.textContent = cartItemCount;
       }
       localStorage.setItem('cart', JSON.stringify(cart)); // Save cart to localStorage
+      updateQuantityDisplays(); // Update all quantity displays
+    }
+
+    // Function to update the quantity display for a specific item
+    function updateQuantityDisplay(itemName, quantity) {
+      const itemQuantitySpans = document.querySelectorAll(`.item-quantity`);
+      itemQuantitySpans.forEach(span => {
+        const parentContainer = span.closest('.add-to-cart-container');
+        const button = parentContainer.querySelector('.add-to-cart-btn');
+        if (button && button.dataset.itemName === itemName) {
+          span.textContent = quantity;
+          const quantityControlsDiv = parentContainer.querySelector('.quantity-controls');
+          if (quantity > 0) {
+            button.style.display = 'none';
+            quantityControlsDiv.style.display = 'flex';
+          } else {
+            button.style.display = 'block';
+            quantityControlsDiv.style.display = 'none';
+          }
+        }
+      });
+    }
+
+    // Function to update all quantity displays on page load/cart change
+    function updateQuantityDisplays() {
+      addToCartButtons.forEach(button => {
+        const itemName = button.dataset.itemName;
+        const existingItem = cart.find(item => item.name === itemName);
+        const quantity = existingItem ? existingItem.quantity : 0;
+        updateQuantityDisplay(itemName, quantity);
+      });
     }
 
     // Function to add an item to the cart
     function addItemToCart(itemName, itemPrice) {
-      // Check if the item already exists in the cart
       const existingItem = cart.find(item => item.name === itemName);
 
       if (existingItem) {
-        existingItem.quantity++; // Increment quantity if item exists
+        existingItem.quantity++;
       } else {
-        cart.push({ name: itemName, price: itemPrice, quantity: 1 }); // Add new item
+        cart.push({ name: itemName, price: itemPrice, quantity: 1 });
       }
-      
-      cartItemCount++; // Increment total item count
-      updateCartCount(); // Update display and localStorage
-      //console.log('Current Cart:', cart); // For debugging: view cart contents in console
-      //alert(`${itemName} added to cart! Total items: ${cartItemCount}`);
+      updateCartCount();
+    }
+
+    // Function to decrease item quantity
+    function decreaseItemQuantity(itemName) {
+      const existingItemIndex = cart.findIndex(item => item.name === itemName);
+
+      if (existingItemIndex !== -1) {
+        if (cart[existingItemIndex].quantity > 1) {
+          cart[existingItemIndex].quantity--;
+        } else {
+          cart.splice(existingItemIndex, 1); // Remove item if quantity becomes 0
+        }
+      }
+      updateCartCount();
     }
 
     // Add event listeners to all "Add to Cart" buttons
     addToCartButtons.forEach(button => {
       button.addEventListener('click', (event) => {
         const itemName = event.target.dataset.itemName;
-        const itemPrice = parseFloat(event.target.dataset.itemPrice); // Convert price to a number
+        const itemPrice = parseFloat(event.target.dataset.itemPrice);
         addItemToCart(itemName, itemPrice);
       });
     });
 
-    // Initialize cart count on page load
+    // Add event listeners for increase/decrease buttons
+    document.querySelectorAll('.increase-quantity').forEach(button => {
+      button.addEventListener('click', (event) => {
+        const itemName = event.target.dataset.itemName;
+        const item = cart.find(i => i.name === itemName);
+        if (item) {
+          item.quantity++;
+        } else {
+          // This case should ideally not happen if "Add to Cart" is clicked first
+          // but as a fallback, find the price from the original button
+          const originalButton = document.querySelector(`.add-to-cart-btn[data-item-name="${itemName}"]`);
+          const itemPrice = parseFloat(originalButton.dataset.itemPrice);
+          cart.push({ name: itemName, price: itemPrice, quantity: 1 });
+        }
+        updateCartCount();
+      });
+    });
+
+    document.querySelectorAll('.decrease-quantity').forEach(button => {
+      button.addEventListener('click', (event) => {
+        const itemName = event.target.dataset.itemName;
+        decreaseItemQuantity(itemName);
+      });
+    });
+
+    // Initialize cart count and quantity displays on page load
     updateCartCount();
+    updateQuantityDisplays();
   </script>
   </body>
 </html>

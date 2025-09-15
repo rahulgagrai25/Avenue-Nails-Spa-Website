@@ -14,734 +14,713 @@
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <style>
-    /* Global Colors */
-    :root {
-      /* Primary Colors */
-      --primary-soft-rose: #b76e79;
-      --primary-dark-brown: #4a3f35;
-      --primary-white: #fff;
-      --primary-dark-gray: #333;
+      /* Global Colors */
+      :root {
+        /* Primary Colors */
+        --primary-soft-rose: #b76e79;
+        --primary-dark-brown: #4a3f35;
+        --primary-white: #fff;
+        --primary-dark-gray: #333;
 
-      /* Secondary Colors */
-      --secondary-light-pink: #f9e0e3;
-      --secondary-light-beige: #f5f0e9;
-      --secondary-off-white: #fffdfa;
-      --secondary-light-gray: #fcfafa;
-      --secondary-medium-gray: #777;
-      --secondary-light-pink-hover: #e5b8c2;
-      --secondary-dark-rose: #b44b67;
-      --secondary-darker-rose: #933a53;
-      --secondary-light-yellow: #e6b800;
-      --secondary-pale-rose: #e495a8;
-      --secondary-light-pink-quote: #f3d6d9;
-      --secondary-soft-pink-stars: #c97a7e;
-      --secondary-pale-beige: #faf6f2;
-      --secondary-light-border: #ddd;
-      --secondary-footer-background: #e9e0d5;
-      --secondary-footer-text-color: #444;
-      --secondary-footer-border: #d2c4b6;
-      --secondary-social-icon-hover: #fae1e4;
+        /* Secondary Colors */
+        --secondary-light-pink: #f9e0e3;
+        --secondary-light-beige: #f5f0e9;
+        --secondary-off-white: #fffdfa;
+        --secondary-light-gray: #fcfafa;
+        --secondary-medium-gray: #777;
+        --secondary-light-pink-hover: #e5b8c2;
+        --secondary-dark-rose: #b44b67;
+        --secondary-darker-rose: #933a53;
+        --secondary-light-yellow: #e6b800;
+        --secondary-pale-rose: #e495a8;
+        --secondary-light-pink-quote: #f3d6d9;
+        --secondary-soft-pink-stars: #c97a7e;
+        --secondary-pale-beige: #faf6f2;
+        --secondary-light-border: #ddd;
+        --secondary-footer-background: #e9e0d5;
+        --secondary-footer-text-color: #444;
+        --secondary-footer-border: #d2c4b6;
+        --secondary-social-icon-hover: #fae1e4;
 
-      /* Other Colors (not categorized as primary/secondary based on usage) */
-      --neutral-dark: #222;
-      --neutral-medium: #555;
-      --neutral-light: #bbb;
-      --neutral-hover-dark: #a55c67; /* This was #b7757f in original, but changed to #a55c67 in the btn:hover */
-    }
-
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      overflow-x: hidden; /* Prevent horizontal scroll */
-      width: 100%;
-    }
-
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background-color: var(--secondary-off-white);
-      color: var(--primary-dark-gray);
-    }
-
-    /* Navbar */
-    .navbar {
-      height: 100px;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 8%;
-      background: var(--secondary-light-gray);
-      position: absolute;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      line-height: 2rem;
-      font-weight: 300;
-      font-family: Cormorant Garamond, serif;
-      margin-left: 0.25rem;
-      display: flex; /* Make logo a flex container */
-      align-items: center; /* Vertically align items */
-    }
-
-    .logo-icon {
-      height: 30px; /* Adjust size as needed */
-      width: 30px; /* Adjust size as needed */
-      margin-right: 10px; /* Space between icon and text */
-      fill: var(--primary-soft-rose); /* Apply color if it's an SVG */
-    }
-
-    .logo span {
-      color: var(--primary-soft-rose); /* soft rose */
-      font-size: 24px;
-      font-family: "Cormorant Garamond", serif;
-      font-weight: 600;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--primary-dark-gray);
-      font-family: "Inter", sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-    .nav-links a:hover {
-      color: var(--secondary-dark-rose);
-    }
-
-    /* Hamburger Menu */
-    .hamburger-menu {
-      display: none; /* Hidden by default on larger screens */
-      flex-direction: column;
-      justify-content: space-around;
-      width: 30px;
-      height: 25px;
-      cursor: pointer;
-      z-index: 1001; /* Ensure it's above other elements */
-    }
-
-    .hamburger-menu span {
-      display: block;
-      width: 100%;
-      height: 3px;
-      background-color: var(--primary-soft-rose);
-      border-radius: 5px;
-      transition: all 0.3s ease-in-out;
-    }
-
-    /* Hamburger menu animation */
-    .hamburger-menu.open span:nth-child(1) {
-      transform: translateY(11px) rotate(45deg);
-    }
-
-    .hamburger-menu.open span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger-menu.open span:nth-child(3) {
-      transform: translateY(-11px) rotate(-45deg);
-    }
-
-    /* Mobile Navigation */
-    .mobile-nav {
-      position: fixed;
-      top: 100px;
-      left: 0;
-      width: 100%;
-      background: var(--secondary-light-gray);
-      padding: 20px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transform: translateY(-100%);
-      opacity: 0;
-      transition: all 0.3s ease;
-      z-index: 999;
-    }
-
-    .mobile-nav.active {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .mobile-nav-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .mobile-nav-links a {
-      text-decoration: none;
-      color: var(--primary-dark-gray);
-      font-family: "Inter", sans-serif;
-      font-size: 16px;
-      font-weight: 500;
-      transition: 0.3s;
-      display: block;
-      padding: 10px 0;
-    }
-
-    .mobile-nav-links a:hover {
-      color: var(--secondary-dark-rose);
-    }
-
-    /* ========== Facial Services Section ========== */
-    .facials-section {
-      --fs-bg: #fffdfa;
-      --fs-pink: #f9e0e3;
-      --fs-lavender: #b2a8d1; /* New lavender color for facials */
-      --fs-lavender-dark: #8a7cb6; /* Darker lavender */
-      --fs-brown: #4a3f35;
-      --fs-text: #333;
-      --fs-muted: #777;
-      --fs-card: #ffffff;
-      --fs-shadow: 0 10px 30px rgba(0,0,0,0.06);
-      background: radial-gradient(1200px 600px at 85% 85%, rgba(178,168,209,0.06), transparent 60%),
-                  radial-gradient(900px 500px at 20% 40%, rgba(249,224,227,0.55), transparent 65%),
-                  var(--fs-bg);
-      padding: 100px 6% 120px; /* leaves navbar intact */
-    }
-
-    .facials-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .facials-header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .facials-header h2 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 44px;
-      color: var(--fs-brown);
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      margin-bottom: 10px;
-    }
-
-    .facials-header h2 span {
-      color: var(--primary-soft-rose);
-    }
-
-    .facials-header p {
-      margin-top: 8px;
-      font-size: 15px;
-      color: var(--fs-muted);
-      max-width: 640px;
-      margin: 0 auto;
-    }
-
-    /* Modified: Image centered, menu below */
-    .facials-grid {
-      display: flex; /* Change to flex */
-      flex-direction: column; /* Stack items vertically */
-      align-items: center; /* Center items horizontally */
-      gap: 28px; /* Space between image and menu */
-      margin-top: 28px;
-    }
-
-    .facials-image-wrap {
-      background: linear-gradient(180deg, #fff 0%, #f5f0f9 100%);
-      border-radius: 16px;
-      padding: 14px;
-      box-shadow: var(--fs-shadow);
-      position: relative;
-      overflow: hidden;
-      max-width: 600px; /* Constrain image width for centering */
-      width: 100%; /* Ensure it takes full width up to max-width */
-      margin-bottom: 20px; /* Space between image and the menu container */
-    }
-
-    /* Glass morphed circle decorative elements */
-    .glass-circle {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      z-index: 1;
-    }
-    
-    .glass-circle-1 {
-      width: 130px;
-      height: 130px;
-      top: 190px;
-      left:970px; /* This will be relative to the image wrap, might need adjustment */
-      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(217, 32, 97, 0.118) 100%);
-    }
-    
-    .glass-circle-2 {
-      width: 120px;
-      height: 120px;
-      bottom: 30px;
-      left: 420px; /* This will be relative to the image wrap, might need adjustment */
-      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(217, 32, 97, 0.118) 100%);
-    }
-
-    @media (max-width: 1300px) {
-        .glass-circle-1{
-          display: none;
-        }
-        .glass-circle-2{
-          display: none;
-        }
+        /* Other Colors (not categorized as primary/secondary based on usage) */
+        --neutral-dark: #222;
+        --neutral-medium: #555;
+        --neutral-light: #bbb;
+        --neutral-hover-dark: #a55c67; /* This was #b7757f in original, but changed to #a55c67 in the btn:hover */
       }
 
-    .facials-image-wrap img {
-      width: 100%;
-      height: 420px;
-      object-fit: cover;
-      border-radius: 12px;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* The main container for the service cards - now just a wrapper */
-    .facials-card-list {
-      /* Removed background, shadow, etc. from here */
-      width: 100%; /* Ensure it takes full width */
-      max-width: 1200px; /* Match container max-width */
-      display: flex; /* Use flex to stack the grid and other elements */
-      flex-direction: column;
-      gap: 10px; /* Space between the grid and note/cta */
-      padding: 0; /* Remove padding from this wrapper */
-    }
-
-    /* Individual service card style (re-used for lash services) */
-    .facials-card {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      background: var(--fs-card);
-      border-radius: 12px;
-      padding: 16px 18px;
-      margin: 0; /* Reset margin as grid will handle spacing */
-      border: 1px solid #f1e6e8;
-      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-    }
-
-    .facials-card:hover {
-      transform: translateY(-2px);
-      border-color: #edd2d8;
-      box-shadow: 0 12px 26px rgba(178,168,209,0.12);
-    }
-
-    .fc-left {
-      display: grid;
-      grid-template-columns: 44px 1fr;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .fc-icon {
-      display: grid;
-      place-items: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      background: var(--secondary-light-pink-quote); /* Lavender tint instead of pink */
-      color: var(--fs-lavender);
-      font-size: 20px;
-    }
-
-    .facials-card h3 {
-      font-family: "Inter", sans-serif;
-      font-weight: 300;
-      font-size: 18px;
-      color: var(--fs-brown);
-      margin-bottom: 2px;
-    }
-
-    .facials-card p {
-      font-size: 13px;
-      color: var(--fs-muted);
-    }
-
-    .fc-right {
-      display: grid;
-      justify-items: end;
-      align-content: center;
-      gap: 2px;
-    }
-
-    .fc-price {
-      color: var(--primary-soft-rose);
-      font-weight: 700;
-      font-size: 18px;
-    }
-
-    .fc-time {
-      font-size: 12px;
-      color: #9a8f85;
-    }
-
-    .facials-note {
-      margin: 12px 6px 6px;
-      font-size: 12.5px;
-      color: #8a7f78;
-      text-align: center;
-    }
-
-    .facials-cta {
-      display: block;
-      margin: 20px auto 10px;
-      background: var(--primary-soft-rose);
-      color: #fff;
-      padding: 12px 22px;
-      border-radius: 22px;
-      text-decoration: none;
-      font-weight: 600;
-      letter-spacing: 0.2px;
-      transition: background .25s ease, transform .15s ease;
-      text-align: center;
-      max-width: 200px;
-    }
-
-    .facials-cta:hover {
-      background: var(--neutral-hover-dark);
-      transform: translateY(-1px);
-    }
-
-    /* Add to Cart Button Styling */
-    .add-to-cart-btn {
-      background-color: var(--primary-soft-rose);
-      color: var(--primary-white);
-      border: none;
-      padding: 8px 12px;
-      border-radius: 18px;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 500;
-      transition: background-color 0.3s ease;
-      margin-top: 5px; /* Adjust as needed */
-    }
-
-    .add-to-cart-btn:hover {
-      background-color: var(--secondary-dark-rose);
-    }
-
-    /* Quantity controls */
-    .quantity-controls {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 5px;
-      justify-content: flex-end; /* Align to the right */
-    }
-
-    .quantity-controls button {
-      background-color: var(--secondary-light-pink);
-      color: var(--primary-dark-brown);
-      border: 1px solid var(--secondary-pale-rose);
-      border-radius: 50%;
-      width: 25px;
-      height: 25px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 600;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .quantity-controls button:hover {
-      background-color: var(--secondary-pale-rose);
-      color: var(--primary-white);
-    }
-
-    .quantity-controls span {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--primary-dark-gray);
-      min-width: 20px;
-      text-align: center;
-    }
-
-    /* Cart Icon and Count Styling for Desktop */
-    #cart-icon-desktop {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      background-color: var(--secondary-light-pink);
-      padding: 5px 20px;
-      border-radius: 15px;
-      gap: 5px;
-    }
-
-    #cart-count-desktop {
-      background-color: var(--secondary-darker-rose);
-      color: var(--primary-white);
-      border-radius: 50%;
-      padding: 2px 7px;
-      font-size: 11px;
-      position: absolute;
-      top: -8px;
-      right: -15px;
-      min-width: 20px;
-      text-align: center;
-      line-height: 1;
-    }
-
-    /* Cart Icon and Count Styling for Mobile */
-    #cart-icon-mobile {
-      position: relative;
-      display: none; /* Hidden by default, shown on mobile */
-      align-items: center;
-      background-color: var(--secondary-light-pink);
-      padding: 5px 20px;
-      border-radius: 15px;
-      gap: 5px;
-      text-decoration: none; /* Ensure it looks like a link */
-      color: var(--primary-dark-gray); /* Inherit color or set explicitly */
-    }
-
-    #cart-count-mobile {
-      background-color: var(--secondary-darker-rose);
-      color: var(--primary-white);
-      border-radius: 50%;
-      padding: 2px 7px;
-      font-size: 11px;
-      position: absolute;
-      top: -8px;
-      right: -15px;
-      min-width: 20px;
-      text-align: center;
-      line-height: 1;
-    }
-
-
-    /* New CSS for 3-column lash services grid (re-used for permanent makeup) */
-    .lash-services-grid { /* Renamed to .services-grid for general use if needed */
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-      gap: 10px; /* Smaller gap between cards within the grid */
-      padding: 12px; /* Padding for the entire grid container */
-      background: rgba(255,255,255,0.65); /* Apply background here */
-      backdrop-filter: blur(4px); /* Apply backdrop-filter here */
-      border-radius: 16px; /* Apply border-radius here */
-      box-shadow: var(--fs-shadow); /* Apply box-shadow here */
-      width: 100%; /* Ensure it takes full width of its parent */
-    }
-
-    .lash-category-title { /* Renamed to .service-category-title for general use if needed */
-      grid-column: 1 / -1; /* Span across all columns */
-      text-align: center;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 28px;
-      color: var(--fs-brown);
-      font-weight: 600;
-      margin-top: 20px;
-      margin-bottom: 15px;
-    }
-
-    /* Notification Message */
-    .add-to-cart-notification {
-      position: absolute;
-      background-color: var(--secondary-darker-rose);
-      color: var(--primary-white);
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 12px;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-      pointer-events: none; /* Allow clicks to pass through */
-      white-space: nowrap;
-      z-index: 10;
-      transform: translateY(-100%); /* Position above the button */
-      left: 50%;
-      transform: translateX(-50%) translateY(-100%);
-    }
-
-    .add-to-cart-container {
-      position: relative; /* Needed for absolute positioning of notification */
-      display: inline-block; /* To wrap around the button and notification */
-    }
-
-    /* Responsive Design */
-    @media (max-width: 1024px) {
-      
-      .facials-image-wrap img {
-        height: 360px;
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-      .lash-services-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+
+      html,
+      body {
+        overflow-x: hidden; /* Prevent horizontal scroll */
+        width: 100%;
       }
-      .lash-category-title {
-        font-size: 24px;
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: var(--secondary-off-white);
+        color: var(--primary-dark-gray);
       }
-    }
-    
-    @media (max-width: 768px) {
+
+      /* Navbar */
       .navbar {
-        padding: 18px 5%;
         height: 100px;
-        justify-content: space-between; /* Keep logo left, other items right */
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 8%;
+        background: var(--secondary-light-gray);
+        position: absolute;
+        top: 0;
+        z-index: 1000;
       }
-      
+
+      .logo {
+        font-size: 1.5rem;
+        line-height: 2rem;
+        font-weight: 300;
+        font-family: Cormorant Garamond, serif;
+        margin-left: 0.25rem;
+        display: flex; /* Make logo a flex container */
+        align-items: center; /* Vertically align items */
+      }
+
+      .logo-icon {
+        height: 30px; /* Adjust size as needed */
+        width: 30px; /* Adjust size as needed */
+        margin-right: 10px; /* Space between icon and text */
+        fill: var(--primary-soft-rose); /* Apply color if it's an SVG */
+      }
+
+      .logo span {
+        color: var(--primary-soft-rose); /* soft rose */
+        font-size: 24px;
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+      }
+
       .nav-links {
-        display: none; /* Hide desktop nav links */
+        list-style: none;
+        display: flex;
+        gap: 2rem;
       }
-      
-      .hamburger-menu {
-        display: flex; /* Show hamburger */
-        margin-left: 15px; /* Space between cart and hamburger */
-      }
-
-      /* Hide desktop cart icon on mobile */
-      #cart-icon-desktop {
-        display: none;
-      }
-
-      /* Show mobile cart icon on mobile */
-      #cart-icon-mobile {
-        display: inline-flex;
-        margin-right: -35px; /* Space between cart and hamburger */
-      }
-      
-      .facials-section {
-        padding: 80px 5% 80px;
-      }
-      
-      .facials-header h2 {
-         margin-top: 44px;
-        font-size: 36px;
-      }
-      
-      .facials-header p {
+      .nav-links a {
+        text-decoration: none;
+        color: var(--primary-dark-gray);
+        font-family: "Inter", sans-serif;
         font-size: 14px;
-        padding: 0 10px;
+        font-weight: 500;
+        transition: 0.3s;
       }
-      
-      .facials-card {
+      .nav-links a:hover {
+        color: var(--secondary-dark-rose);
+      }
+
+      /* Hamburger Menu */
+      .hamburger-menu {
+        display: none; /* Hidden by default on larger screens */
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        cursor: pointer;
+        z-index: 1001; /* Ensure it's above other elements */
+      }
+
+      .hamburger-menu span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: var(--primary-soft-rose);
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      /* Hamburger menu animation */
+      .hamburger-menu.open span:nth-child(1) {
+        transform: translateY(11px) rotate(45deg);
+      }
+
+      .hamburger-menu.open span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger-menu.open span:nth-child(3) {
+        transform: translateY(-11px) rotate(-45deg);
+      }
+
+      /* Mobile Navigation */
+      .mobile-nav {
+        position: fixed;
+        top: 100px;
+        left: 0;
+        width: 100%;
+        background: var(--secondary-light-gray);
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 999;
+      }
+
+      .mobile-nav.active {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .mobile-nav-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .mobile-nav-links a {
+        text-decoration: none;
+        color: var(--primary-dark-gray);
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        transition: 0.3s;
+        display: block;
+        padding: 10px 0;
+      }
+
+      .mobile-nav-links a:hover {
+        color: var(--secondary-dark-rose);
+      }
+
+      /* ========== Facial Services Section ========== */
+      .facials-section {
+        --fs-bg: #fffdfa;
+        --fs-pink: #f9e0e3;
+        --fs-lavender: #b2a8d1; /* New lavender color for facials */
+        --fs-lavender-dark: #8a7cb6; /* Darker lavender */
+        --fs-brown: #4a3f35;
+        --fs-text: #333;
+        --fs-muted: #777;
+        --fs-card: #ffffff;
+        --fs-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        background: var(--primary-white);
+        background-image: radial-gradient(
+            circle,
+            rgba(200, 167, 150, 0.2) 2px,
+            transparent 2px
+          ),
+          radial-gradient(circle, rgba(200, 167, 150, 0.2) 1px, transparent 1px);
+        background-size: 40px 40px, 80px 80px;
+        background-position: 0 0, 40px 40px;
+        padding: 100px 6% 120px; /* leaves navbar intact */
+      }
+
+      .facials-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .facials-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .facials-header h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 44px;
+        color: var(--fs-brown);
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        margin-bottom: 10px;
+      }
+
+      .facials-header h2 span {
+        color: var(--primary-soft-rose);
+      }
+
+      .facials-header p {
+        margin-top: 8px;
+        font-size: 15px;
+        color: var(--fs-muted);
+        max-width: 640px;
+        margin: 0 auto;
+      }
+
+      /* Modified: Image centered, menu below */
+      .facials-grid {
+        display: flex; /* Change to flex */
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items horizontally */
+        gap: 28px; /* Space between image and menu */
+        margin-top: 28px;
+      }
+
+      .facials-image-wrap {
+        background: linear-gradient(180deg, #fff 0%, #f5f0f9 100%);
+        border-radius: 16px;
         padding: 14px;
-        grid-template-columns: 1fr; /* Stack content on small screens */
-        gap: 10px;
+        box-shadow: var(--fs-shadow);
+        position: relative;
+        overflow: hidden;
+        max-width: 600px; /* Constrain image width for centering */
+        width: 100%; /* Ensure it takes full width up to max-width */
+        margin-bottom: 20px; /* Space between image and the menu container */
       }
-      
+
+      .facials-image-wrap img {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        border-radius: 12px;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* The main container for the service cards - now just a wrapper */
+      .facials-card-list {
+        /* Removed background, shadow, etc. from here */
+        width: 100%; /* Ensure it takes full width */
+        max-width: 1200px; /* Match container max-width */
+        display: flex; /* Use flex to stack the grid and other elements */
+        flex-direction: column;
+        gap: 10px; /* Space between the grid and note/cta */
+        padding: 0; /* Remove padding from this wrapper */
+      }
+
+      /* Individual service card style (re-used for lash services) */
+      .facials-card {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        background: var(--fs-card);
+        border-radius: 12px;
+        padding: 16px 18px;
+        margin: 0; /* Reset margin as grid will handle spacing */
+        border: 1px solid #f1e6e8;
+        transition: transform 0.2s ease, box-shadow 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .facials-card:hover {
+        transform: translateY(-2px);
+        border-color: #edd2d8;
+        box-shadow: 0 12px 26px rgba(178, 168, 209, 0.12);
+      }
+
       .fc-left {
-        grid-template-columns: 40px 1fr;
-        gap: 10px;
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 12px;
+        align-items: center;
       }
-      
+
       .fc-icon {
-        width: 40px;
-        height: 40px;
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        background: var(
+          --secondary-light-pink-quote
+        ); /* Lavender tint instead of pink */
+        color: var(--fs-lavender);
+        font-size: 20px;
+      }
+
+      .facials-card h3 {
+        font-family: "Inter", sans-serif;
+        font-weight: 300;
+        font-size: 18px;
+        color: var(--fs-brown);
+        margin-bottom: 2px;
+      }
+
+      .facials-card p {
+        font-size: 13px;
+        color: var(--fs-muted);
+      }
+
+      .fc-right {
+        display: grid;
+        justify-items: end;
+        align-content: center;
+        gap: 2px;
+      }
+
+      .fc-price {
+        color: var(--primary-soft-rose);
+        font-weight: 700;
         font-size: 18px;
       }
-      
-      .facials-card h3 {
-        font-size: 16px;
-      }
-      
-      .facials-card p {
+
+      .fc-time {
         font-size: 12px;
+        color: #9a8f85;
       }
-      
-      .fc-right {
-        justify-items: start; /* Align price/button to start on small screens */
-        margin-top: 5px;
+
+      .facials-note {
+        margin: 12px 6px 6px;
+        font-size: 12.5px;
+        color: #8a7f78;
+        text-align: center;
       }
-      
-      .fc-price {
-        font-size: 16px;
-      }
-      /* Adjust for smaller screens */
-      .add-to-cart-btn {
-        padding: 6px 10px;
-        font-size: 12px;
-      }
-      #cart-count-desktop, #cart-count-mobile { /* Apply to both for consistency */
-        font-size: 10px;
-        padding: 1px 6px;
-        min-width: 18px;
-        top: -6px;
-        right: -12px;
-      }
-      .lash-services-grid {
-        grid-template-columns: 1fr; /* 1 column on small screens */
-      }
-      .lash-category-title {
-        font-size: 22px;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .logo {
-        font-size: 1.2rem;
-      }
-      
-      .logo-icon {
-        height: 25px;
-        width: 25px;
-      }
-      
-      .logo span {
-        font-size: 20px;
-      }
-      
-      .facials-section {
-        padding: 70px 4% 70px;
-      }
-      
-      .facials-image-wrap {
-        padding: 10px;
-      }
-      
-      .facials-image-wrap img {
-        height: 280px;
-      }
-      
-      .facials-card-list {
-        padding: 10px;
-      }
-      
-      .facials-card {
-        padding: 12px;
-      }
-      
-      .fc-left {
-        grid-template-columns: 36px 1fr;
-      }
-      
-      .fc-icon {
-        width: 36px;
-        height: 36px;
-        font-size: 16px;
-      }
-      
-      .facials-card h3 {
-        font-size: 15px;
-      }
-      
-      .facials-card p {
-        font-size: 12px;
-      }
-      
+
       .facials-cta {
-        padding: 10px 18px;
+        display: block;
+        margin: 20px auto 10px;
+        background: var(--primary-soft-rose);
+        color: #fff;
+        padding: 12px 22px;
+        border-radius: 22px;
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        transition: background 0.25s ease, transform 0.15s ease;
+        text-align: center;
+        max-width: 200px;
+      }
+
+      .facials-cta:hover {
+        background: var(--neutral-hover-dark);
+        transform: translateY(-1px);
+      }
+
+      /* Add to Cart Button Styling */
+      .add-to-cart-btn {
+        background-color: var(--primary-soft-rose);
+        color: var(--primary-white);
+        border: none;
+        padding: 8px 12px;
+        border-radius: 18px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+        margin-top: 5px; /* Adjust as needed */
+      }
+
+      .add-to-cart-btn:hover {
+        background-color: var(--secondary-dark-rose);
+      }
+
+      /* Quantity controls */
+      .quantity-controls {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 5px;
+        justify-content: flex-end; /* Align to the right */
+      }
+
+      .quantity-controls button {
+        background-color: var(--secondary-light-pink);
+        color: var(--primary-dark-brown);
+        border: 1px solid var(--secondary-pale-rose);
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .quantity-controls button:hover {
+        background-color: var(--secondary-pale-rose);
+        color: var(--primary-white);
+      }
+
+      .quantity-controls span {
         font-size: 14px;
+        font-weight: 500;
+        color: var(--primary-dark-gray);
+        min-width: 20px;
+        text-align: center;
       }
+
+      /* Cart Icon and Count Styling for Desktop */
+      #cart-icon-desktop {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        background-color: var(--secondary-light-pink);
+        padding: 5px 20px;
+        border-radius: 15px;
+        gap: 5px;
+      }
+
+      #cart-count-desktop {
+        background-color: var(--secondary-darker-rose);
+        color: var(--primary-white);
+        border-radius: 50%;
+        padding: 2px 7px;
+        font-size: 11px;
+        position: absolute;
+        top: -8px;
+        right: -15px;
+        min-width: 20px;
+        text-align: center;
+        line-height: 1;
+      }
+
+      /* Cart Icon and Count Styling for Mobile */
+      #cart-icon-mobile {
+        position: relative;
+        display: none; /* Hidden by default, shown on mobile */
+        align-items: center;
+        background-color: var(--secondary-light-pink);
+        padding: 5px 20px;
+        border-radius: 15px;
+        gap: 5px;
+        text-decoration: none; /* Ensure it looks like a link */
+        color: var(--primary-dark-gray); /* Inherit color or set explicitly */
+      }
+
+      #cart-count-mobile {
+        background-color: var(--secondary-darker-rose);
+        color: var(--primary-white);
+        border-radius: 50%;
+        padding: 2px 7px;
+        font-size: 11px;
+        position: absolute;
+        top: -8px;
+        right: -15px;
+        min-width: 20px;
+        text-align: center;
+        line-height: 1;
+      }
+
+      /* New CSS for 3-column lash services grid (re-used for permanent makeup) */
+      .lash-services-grid {
+        /* Renamed to .services-grid for general use if needed */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+        gap: 10px; /* Smaller gap between cards within the grid */
+        padding: 12px; /* Padding for the entire grid container */
+        background: rgba(255, 255, 255, 0.65); /* Apply background here */
+        backdrop-filter: blur(4px); /* Apply backdrop-filter here */
+        border-radius: 16px; /* Apply border-radius here */
+        box-shadow: var(--fs-shadow); /* Apply box-shadow here */
+        width: 100%; /* Ensure it takes full width of its parent */
+      }
+
       .lash-category-title {
-        font-size: 20px;
+        /* Renamed to .service-category-title for general use if needed */
+        grid-column: 1 / -1; /* Span across all columns */
+        text-align: center;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 28px;
+        color: var(--fs-brown);
+        font-weight: 600;
+        margin-top: 20px;
+        margin-bottom: 15px;
       }
-    }
-  </style>
+
+      /* Notification Message */
+      .add-to-cart-notification {
+        position: absolute;
+        background-color: var(--secondary-darker-rose);
+        color: var(--primary-white);
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        pointer-events: none; /* Allow clicks to pass through */
+        white-space: nowrap;
+        z-index: 10;
+        transform: translateY(-100%); /* Position above the button */
+        left: 50%;
+        transform: translateX(-50%) translateY(-100%);
+      }
+
+      .add-to-cart-container {
+        position: relative; /* Needed for absolute positioning of notification */
+        display: inline-block; /* To wrap around the button and notification */
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .facials-image-wrap img {
+          height: 360px;
+        }
+        .lash-services-grid {
+          grid-template-columns: repeat(
+            2,
+            1fr
+          ); /* 2 columns on medium screens */
+        }
+        .lash-category-title {
+          font-size: 24px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 18px 5%;
+          height: 100px;
+          justify-content: space-between; /* Keep logo left, other items right */
+        }
+
+        .nav-links {
+          display: none; /* Hide desktop nav links */
+        }
+
+        .hamburger-menu {
+          display: flex; /* Show hamburger */
+          margin-left: 15px; /* Space between cart and hamburger */
+        }
+
+        /* Hide desktop cart icon on mobile */
+        #cart-icon-desktop {
+          display: none;
+        }
+
+        /* Show mobile cart icon on mobile */
+        #cart-icon-mobile {
+          display: inline-flex;
+          margin-right: -35px; /* Space between cart and hamburger */
+        }
+
+        .facials-section {
+          padding: 80px 5% 80px;
+        }
+
+        .facials-header h2 {
+          margin-top: 44px;
+          font-size: 36px;
+        }
+
+        .facials-header p {
+          font-size: 14px;
+          padding: 0 10px;
+        }
+
+        .facials-card {
+          padding: 14px;
+          grid-template-columns: 1fr; /* Stack content on small screens */
+          gap: 10px;
+        }
+
+        .fc-left {
+          grid-template-columns: 40px 1fr;
+          gap: 10px;
+        }
+
+        .fc-icon {
+          width: 40px;
+          height: 40px;
+          font-size: 18px;
+        }
+
+        .facials-card h3 {
+          font-size: 16px;
+        }
+
+        .facials-card p {
+          font-size: 12px;
+        }
+
+        .fc-right {
+          justify-items: start; /* Align price/button to start on small screens */
+          margin-top: 5px;
+        }
+
+        .fc-price {
+          font-size: 16px;
+        }
+        /* Adjust for smaller screens */
+        .add-to-cart-btn {
+          padding: 6px 10px;
+          font-size: 12px;
+        }
+        #cart-count-desktop,
+        #cart-count-mobile {
+          /* Apply to both for consistency */
+          font-size: 10px;
+          padding: 1px 6px;
+          min-width: 18px;
+          top: -6px;
+          right: -12px;
+        }
+        .lash-services-grid {
+          grid-template-columns: 1fr; /* 1 column on small screens */
+        }
+        .lash-category-title {
+          font-size: 22px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .logo {
+          font-size: 1.2rem;
+        }
+
+        .logo-icon {
+          height: 25px;
+          width: 25px;
+        }
+
+        .logo span {
+          font-size: 20px;
+        }
+
+        .facials-section {
+          padding: 70px 4% 70px;
+        }
+
+        .facials-image-wrap {
+          padding: 10px;
+        }
+
+        .facials-image-wrap img {
+          height: 280px;
+        }
+
+        .facials-card-list {
+          padding: 10px;
+        }
+
+        .facials-card {
+          padding: 12px;
+        }
+
+        .fc-left {
+          grid-template-columns: 36px 1fr;
+        }
+
+        .fc-icon {
+          width: 36px;
+          height: 36px;
+          font-size: 16px;
+        }
+
+        .facials-card h3 {
+          font-size: 15px;
+        }
+
+        .facials-card p {
+          font-size: 12px;
+        }
+
+        .facials-cta {
+          padding: 10px 18px;
+          font-size: 14px;
+        }
+        .lash-category-title {
+          font-size: 20px;
+        }
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -798,15 +777,18 @@
         <div class="facials-header">
           <h2>Korean <span>Permanent Makeup</span></h2>
           <p>
-            Enhance your natural beauty with our advanced Korean permanent makeup techniques for lasting perfection.
+            Enhance your natural beauty with our advanced Korean permanent
+            makeup techniques for lasting perfection.
           </p>
         </div>
 
         <div class="facials-grid">
           <!-- Image centered and above the menu -->
-          <div class="glass-circle glass-circle-1"></div>
-          <div class="glass-circle glass-circle-2"></div>
-          <figure class="facials-image-wrap" aria-label="Permanent makeup session">
+
+          <figure
+            class="facials-image-wrap"
+            aria-label="Permanent makeup session"
+          >
             <img
               src="https://archangelbrow.com/wp-content/uploads/2023/11/semi_permanent_img.jpg"
               alt="Permanent makeup session"
@@ -823,18 +805,37 @@
                   <span class="fc-icon">✍️</span>
                   <div>
                     <h3>Hair Stroke Brow</h3>
-                    <p>Achieve natural-looking, hair-like strokes for fuller brows.</p>
+                    <p>
+                      Achieve natural-looking, hair-like strokes for fuller
+                      brows.
+                    </p>
                   </div>
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$450</strong>
                   <div class="add-to-cart-container">
-                    <button class="add-to-cart-btn" data-item-name="Hair Stroke Brow" data-item-price="450">Add to Cart</button>
+                    <button
+                      class="add-to-cart-btn"
+                      data-item-name="Hair Stroke Brow"
+                      data-item-price="450"
+                    >
+                      Add to Cart
+                    </button>
                     <div class="add-to-cart-notification">Added</div>
-                    <div class="quantity-controls" style="display: none;">
-                      <button class="decrease-quantity" data-item-name="Hair Stroke Brow">-</button>
+                    <div class="quantity-controls" style="display: none">
+                      <button
+                        class="decrease-quantity"
+                        data-item-name="Hair Stroke Brow"
+                      >
+                        -
+                      </button>
                       <span class="item-quantity">0</span>
-                      <button class="increase-quantity" data-item-name="Hair Stroke Brow">+</button>
+                      <button
+                        class="increase-quantity"
+                        data-item-name="Hair Stroke Brow"
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -845,18 +846,37 @@
                   <span class="fc-icon">🌈</span>
                   <div>
                     <h3>Eyebrow Ombre</h3>
-                    <p>Soft, shaded brows with a gradient effect for a polished look.</p>
+                    <p>
+                      Soft, shaded brows with a gradient effect for a polished
+                      look.
+                    </p>
                   </div>
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$350</strong>
                   <div class="add-to-cart-container">
-                    <button class="add-to-cart-btn" data-item-name="Eyebrow Ombre" data-item-price="350">Add to Cart</button>
+                    <button
+                      class="add-to-cart-btn"
+                      data-item-name="Eyebrow Ombre"
+                      data-item-price="350"
+                    >
+                      Add to Cart
+                    </button>
                     <div class="add-to-cart-notification">Added</div>
-                    <div class="quantity-controls" style="display: none;">
-                      <button class="decrease-quantity" data-item-name="Eyebrow Ombre">-</button>
+                    <div class="quantity-controls" style="display: none">
+                      <button
+                        class="decrease-quantity"
+                        data-item-name="Eyebrow Ombre"
+                      >
+                        -
+                      </button>
                       <span class="item-quantity">0</span>
-                      <button class="increase-quantity" data-item-name="Eyebrow Ombre">+</button>
+                      <button
+                        class="increase-quantity"
+                        data-item-name="Eyebrow Ombre"
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -867,18 +887,37 @@
                   <span class="fc-icon">💋</span>
                   <div>
                     <h3>Lips Blush</h3>
-                    <p>Enhance your lip color and shape for a subtle, natural tint.</p>
+                    <p>
+                      Enhance your lip color and shape for a subtle, natural
+                      tint.
+                    </p>
                   </div>
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$350</strong>
                   <div class="add-to-cart-container">
-                    <button class="add-to-cart-btn" data-item-name="Lips Blush" data-item-price="350">Add to Cart</button>
+                    <button
+                      class="add-to-cart-btn"
+                      data-item-name="Lips Blush"
+                      data-item-price="350"
+                    >
+                      Add to Cart
+                    </button>
                     <div class="add-to-cart-notification">Added</div>
-                    <div class="quantity-controls" style="display: none;">
-                      <button class="decrease-quantity" data-item-name="Lips Blush">-</button>
+                    <div class="quantity-controls" style="display: none">
+                      <button
+                        class="decrease-quantity"
+                        data-item-name="Lips Blush"
+                      >
+                        -
+                      </button>
                       <span class="item-quantity">0</span>
-                      <button class="increase-quantity" data-item-name="Lips Blush">+</button>
+                      <button
+                        class="increase-quantity"
+                        data-item-name="Lips Blush"
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -889,18 +928,36 @@
                   <span class="fc-icon">👁️</span>
                   <div>
                     <h3>Eyeliner Tattoo</h3>
-                    <p>Define your eyes with a smudge-proof, permanent eyeliner.</p>
+                    <p>
+                      Define your eyes with a smudge-proof, permanent eyeliner.
+                    </p>
                   </div>
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$250</strong>
                   <div class="add-to-cart-container">
-                    <button class="add-to-cart-btn" data-item-name="Eyeliner Tattoo" data-item-price="250">Add to Cart</button>
+                    <button
+                      class="add-to-cart-btn"
+                      data-item-name="Eyeliner Tattoo"
+                      data-item-price="250"
+                    >
+                      Add to Cart
+                    </button>
                     <div class="add-to-cart-notification">Added</div>
-                    <div class="quantity-controls" style="display: none;">
-                      <button class="decrease-quantity" data-item-name="Eyeliner Tattoo">-</button>
+                    <div class="quantity-controls" style="display: none">
+                      <button
+                        class="decrease-quantity"
+                        data-item-name="Eyeliner Tattoo"
+                      >
+                        -
+                      </button>
                       <span class="item-quantity">0</span>
-                      <button class="increase-quantity" data-item-name="Eyeliner Tattoo">+</button>
+                      <button
+                        class="increase-quantity"
+                        data-item-name="Eyeliner Tattoo"
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -911,18 +968,37 @@
                   <span class="fc-icon">🔄</span>
                   <div>
                     <h3>Touch Up (8–12 weeks)</h3>
-                    <p>Perfecting session to ensure lasting results and color vibrancy.</p>
+                    <p>
+                      Perfecting session to ensure lasting results and color
+                      vibrancy.
+                    </p>
                   </div>
                 </div>
                 <div class="fc-right">
                   <strong class="fc-price">$100</strong>
                   <div class="add-to-cart-container">
-                    <button class="add-to-cart-btn" data-item-name="Permanent Makeup Touch Up" data-item-price="100">Add to Cart</button>
+                    <button
+                      class="add-to-cart-btn"
+                      data-item-name="Permanent Makeup Touch Up"
+                      data-item-price="100"
+                    >
+                      Add to Cart
+                    </button>
                     <div class="add-to-cart-notification">Added</div>
-                    <div class="quantity-controls" style="display: none;">
-                      <button class="decrease-quantity" data-item-name="Permanent Makeup Touch Up">-</button>
+                    <div class="quantity-controls" style="display: none">
+                      <button
+                        class="decrease-quantity"
+                        data-item-name="Permanent Makeup Touch Up"
+                      >
+                        -
+                      </button>
                       <span class="item-quantity">0</span>
-                      <button class="increase-quantity" data-item-name="Permanent Makeup Touch Up">+</button>
+                      <button
+                        class="increase-quantity"
+                        data-item-name="Permanent Makeup Touch Up"
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -939,12 +1015,28 @@
                 <div class="fc-right">
                   <strong class="fc-price">$250</strong>
                   <div class="add-to-cart-container">
-                    <button class="add-to-cart-btn" data-item-name="SMP (small area, per session)" data-item-price="250">Add to Cart</button>
+                    <button
+                      class="add-to-cart-btn"
+                      data-item-name="SMP (small area, per session)"
+                      data-item-price="250"
+                    >
+                      Add to Cart
+                    </button>
                     <div class="add-to-cart-notification">Added</div>
-                    <div class="quantity-controls" style="display: none;">
-                      <button class="decrease-quantity" data-item-name="SMP (small area, per session)">-</button>
+                    <div class="quantity-controls" style="display: none">
+                      <button
+                        class="decrease-quantity"
+                        data-item-name="SMP (small area, per session)"
+                      >
+                        -
+                      </button>
                       <span class="item-quantity">0</span>
-                      <button class="increase-quantity" data-item-name="SMP (small area, per session)">+</button>
+                      <button
+                        class="increase-quantity"
+                        data-item-name="SMP (small area, per session)"
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -952,7 +1044,8 @@
             </div>
 
             <p class="facials-note">
-              All permanent makeup services include a complimentary consultation to discuss your desired look and aftercare.
+              All permanent makeup services include a complimentary consultation
+              to discuss your desired look and aftercare.
             </p>
 
             <a href="billing.html" class="facials-cta">Book Your Appointment</a>
@@ -962,168 +1055,186 @@
     </section>
 
     <script>
-    // Mobile menu toggle functionality
-    const hamburgerMenu = document.querySelector('.hamburger-menu');
-    const mobileNav = document.querySelector('.mobile-nav');
-    
-    hamburgerMenu.addEventListener('click', function() {
-      this.classList.toggle('open');
-      mobileNav.classList.toggle('active');
-      
-      // Prevent body scrolling when menu is open
-      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-    });
-    
-    // Close menu when clicking on a link
-    const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        hamburgerMenu.classList.remove('open');
-        mobileNav.classList.remove('active');
-        document.body.style.overflow = '';
+      // Mobile menu toggle functionality
+      const hamburgerMenu = document.querySelector(".hamburger-menu");
+      const mobileNav = document.querySelector(".mobile-nav");
+
+      hamburgerMenu.addEventListener("click", function () {
+        this.classList.toggle("open");
+        mobileNav.classList.toggle("active");
+
+        // Prevent body scrolling when menu is open
+        document.body.style.overflow = mobileNav.classList.contains("active")
+          ? "hidden"
+          : "";
       });
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!hamburgerMenu.contains(e.target) && !mobileNav.contains(e.target) && mobileNav.classList.contains('active')) {
-        hamburgerMenu.classList.remove('open');
-        mobileNav.classList.remove('active');
-        document.body.style.overflow = '';
+
+      // Close menu when clicking on a link
+      const mobileLinks = document.querySelectorAll(".mobile-nav-links a");
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburgerMenu.classList.remove("open");
+          mobileNav.classList.remove("active");
+          document.body.style.overflow = "";
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (
+          !hamburgerMenu.contains(e.target) &&
+          !mobileNav.contains(e.target) &&
+          mobileNav.classList.contains("active")
+        ) {
+          hamburgerMenu.classList.remove("open");
+          mobileNav.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+      });
+
+      // --- Cart Functionality ---
+      // Load cart from localStorage or initialize as empty array
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      // Calculate initial item count by summing quantities of items in cart
+      let cartItemCount = cart.reduce(
+        (total, item) => total + item.quantity,
+        0
+      );
+
+      const cartCountDesktopElement =
+        document.getElementById("cart-count-desktop");
+      const cartCountMobileElement =
+        document.getElementById("cart-count-mobile");
+      const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+      const quantityControls = document.querySelectorAll(".quantity-controls");
+
+      // Function to update the cart count display and save to localStorage
+      function updateCartCount() {
+        cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
+        if (cartCountDesktopElement) {
+          cartCountDesktopElement.textContent = cartItemCount;
+        }
+        if (cartCountMobileElement) {
+          cartCountMobileElement.textContent = cartItemCount;
+        }
+        localStorage.setItem("cart", JSON.stringify(cart)); // Save cart to localStorage
+        updateQuantityDisplays(); // Update all quantity displays
       }
-    });
 
-    // --- Cart Functionality ---
-    // Load cart from localStorage or initialize as empty array
-    let cart = JSON.parse(localStorage.getItem('cart')) || []; 
-    // Calculate initial item count by summing quantities of items in cart
-    let cartItemCount = cart.reduce((total, item) => total + item.quantity, 0); 
-
-    const cartCountDesktopElement = document.getElementById('cart-count-desktop');
-    const cartCountMobileElement = document.getElementById('cart-count-mobile');
-    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-    const quantityControls = document.querySelectorAll('.quantity-controls');
-
-    // Function to update the cart count display and save to localStorage
-    function updateCartCount() {
-      cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
-      if (cartCountDesktopElement) {
-        cartCountDesktopElement.textContent = cartItemCount;
-      }
-      if (cartCountMobileElement) {
-        cartCountMobileElement.textContent = cartItemCount;
-      }
-      localStorage.setItem('cart', JSON.stringify(cart)); // Save cart to localStorage
-      updateQuantityDisplays(); // Update all quantity displays
-    }
-
-    // Function to update the quantity display for a specific item
-    function updateQuantityDisplay(itemName, quantity) {
-      const itemQuantitySpans = document.querySelectorAll(`.item-quantity`);
-      itemQuantitySpans.forEach(span => {
-        const parentContainer = span.closest('.add-to-cart-container');
-        const button = parentContainer.querySelector('.add-to-cart-btn');
-        if (button && button.dataset.itemName === itemName) {
-          span.textContent = quantity;
-          const quantityControlsDiv = parentContainer.querySelector('.quantity-controls');
-          if (quantity > 0) {
-            button.style.display = 'none';
-            quantityControlsDiv.style.display = 'flex';
-          } else {
-            button.style.display = 'block';
-            quantityControlsDiv.style.display = 'none';
+      // Function to update the quantity display for a specific item
+      function updateQuantityDisplay(itemName, quantity) {
+        const itemQuantitySpans = document.querySelectorAll(`.item-quantity`);
+        itemQuantitySpans.forEach((span) => {
+          const parentContainer = span.closest(".add-to-cart-container");
+          const button = parentContainer.querySelector(".add-to-cart-btn");
+          if (button && button.dataset.itemName === itemName) {
+            span.textContent = quantity;
+            const quantityControlsDiv =
+              parentContainer.querySelector(".quantity-controls");
+            if (quantity > 0) {
+              button.style.display = "none";
+              quantityControlsDiv.style.display = "flex";
+            } else {
+              button.style.display = "block";
+              quantityControlsDiv.style.display = "none";
+            }
           }
-        }
-      });
-    }
-
-    // Function to update all quantity displays on page load/cart change
-    function updateQuantityDisplays() {
-      addToCartButtons.forEach(button => {
-        const itemName = button.dataset.itemName;
-        const existingItem = cart.find(item => item.name === itemName);
-        const quantity = existingItem ? existingItem.quantity : 0;
-        updateQuantityDisplay(itemName, quantity);
-      });
-    }
-
-    // Function to add an item to the cart
-    function addItemToCart(itemName, itemPrice, buttonElement) {
-      const existingItem = cart.find(item => item.name === itemName);
-
-      if (existingItem) {
-        existingItem.quantity++;
-      } else {
-        cart.push({ name: itemName, price: itemPrice, quantity: 1 });
+        });
       }
-      updateCartCount();
-      showNotification(buttonElement); // Show notification
-    }
 
-    // Function to decrease item quantity
-    function decreaseItemQuantity(itemName) {
-      const existingItemIndex = cart.findIndex(item => item.name === itemName);
+      // Function to update all quantity displays on page load/cart change
+      function updateQuantityDisplays() {
+        addToCartButtons.forEach((button) => {
+          const itemName = button.dataset.itemName;
+          const existingItem = cart.find((item) => item.name === itemName);
+          const quantity = existingItem ? existingItem.quantity : 0;
+          updateQuantityDisplay(itemName, quantity);
+        });
+      }
 
-      if (existingItemIndex !== -1) {
-        if (cart[existingItemIndex].quantity > 1) {
-          cart[existingItemIndex].quantity--;
+      // Function to add an item to the cart
+      function addItemToCart(itemName, itemPrice, buttonElement) {
+        const existingItem = cart.find((item) => item.name === itemName);
+
+        if (existingItem) {
+          existingItem.quantity++;
         } else {
-          cart.splice(existingItemIndex, 1); // Remove item if quantity becomes 0
-        }
-      }
-      updateCartCount();
-    }
-
-    // Function to show "Added" notification
-    function showNotification(buttonElement) {
-      const container = buttonElement.closest('.add-to-cart-container');
-      const notification = container.querySelector('.add-to-cart-notification');
-      if (notification) {
-        notification.style.opacity = '1';
-        setTimeout(() => {
-          notification.style.opacity = '0';
-        }, 1500); // Notification disappears after 1.5 seconds
-      }
-    }
-
-    // Add event listeners to all "Add to Cart" buttons
-    addToCartButtons.forEach(button => {
-      button.addEventListener('click', (event) => {
-        const itemName = event.target.dataset.itemName;
-        const itemPrice = parseFloat(event.target.dataset.itemPrice);
-        addItemToCart(itemName, itemPrice, event.target); // Pass the button element
-      });
-    });
-
-    // Add event listeners for increase/decrease buttons
-    document.querySelectorAll('.increase-quantity').forEach(button => {
-      button.addEventListener('click', (event) => {
-        const itemName = event.target.dataset.itemName;
-        const item = cart.find(i => i.name === itemName);
-        if (item) {
-          item.quantity++;
-        } else {
-          // This case should ideally not happen if "Add to Cart" is clicked first
-          // but as a fallback, find the price from the original button
-          const originalButton = document.querySelector(`.add-to-cart-btn[data-item-name="${itemName}"]`);
-          const itemPrice = parseFloat(originalButton.dataset.itemPrice);
           cart.push({ name: itemName, price: itemPrice, quantity: 1 });
         }
         updateCartCount();
-        showNotification(event.target); // Show notification
-      });
-    });
+        showNotification(buttonElement); // Show notification
+      }
 
-    document.querySelectorAll('.decrease-quantity').forEach(button => {
-      button.addEventListener('click', (event) => {
-        const itemName = event.target.dataset.itemName;
-        decreaseItemQuantity(itemName);
-      });
-    });
+      // Function to decrease item quantity
+      function decreaseItemQuantity(itemName) {
+        const existingItemIndex = cart.findIndex(
+          (item) => item.name === itemName
+        );
 
-    // Initialize cart count and quantity displays on page load
-    updateCartCount();
-    updateQuantityDisplays();
-  </script>
+        if (existingItemIndex !== -1) {
+          if (cart[existingItemIndex].quantity > 1) {
+            cart[existingItemIndex].quantity--;
+          } else {
+            cart.splice(existingItemIndex, 1); // Remove item if quantity becomes 0
+          }
+        }
+        updateCartCount();
+      }
+
+      // Function to show "Added" notification
+      function showNotification(buttonElement) {
+        const container = buttonElement.closest(".add-to-cart-container");
+        const notification = container.querySelector(
+          ".add-to-cart-notification"
+        );
+        if (notification) {
+          notification.style.opacity = "1";
+          setTimeout(() => {
+            notification.style.opacity = "0";
+          }, 1500); // Notification disappears after 1.5 seconds
+        }
+      }
+
+      // Add event listeners to all "Add to Cart" buttons
+      addToCartButtons.forEach((button) => {
+        button.addEventListener("click", (event) => {
+          const itemName = event.target.dataset.itemName;
+          const itemPrice = parseFloat(event.target.dataset.itemPrice);
+          addItemToCart(itemName, itemPrice, event.target); // Pass the button element
+        });
+      });
+
+      // Add event listeners for increase/decrease buttons
+      document.querySelectorAll(".increase-quantity").forEach((button) => {
+        button.addEventListener("click", (event) => {
+          const itemName = event.target.dataset.itemName;
+          const item = cart.find((i) => i.name === itemName);
+          if (item) {
+            item.quantity++;
+          } else {
+            // This case should ideally not happen if "Add to Cart" is clicked first
+            // but as a fallback, find the price from the original button
+            const originalButton = document.querySelector(
+              `.add-to-cart-btn[data-item-name="${itemName}"]`
+            );
+            const itemPrice = parseFloat(originalButton.dataset.itemPrice);
+            cart.push({ name: itemName, price: itemPrice, quantity: 1 });
+          }
+          updateCartCount();
+          showNotification(event.target); // Show notification
+        });
+      });
+
+      document.querySelectorAll(".decrease-quantity").forEach((button) => {
+        button.addEventListener("click", (event) => {
+          const itemName = event.target.dataset.itemName;
+          decreaseItemQuantity(itemName);
+        });
+      });
+
+      // Initialize cart count and quantity displays on page load
+      updateCartCount();
+      updateQuantityDisplays();
+    </script>
   </body>
 </html>

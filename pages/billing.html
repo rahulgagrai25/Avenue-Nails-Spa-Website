@@ -203,8 +203,8 @@
         display: inline-flex;
         align-items: center;
         background-color: var(--secondary-light-pink);
-      padding: 5px 20px;
-      border-radius: 15px;
+        padding: 5px 20px;
+        border-radius: 15px;
         gap: 5px;
       }
 
@@ -227,7 +227,15 @@
       .billing-section {
         padding: 120px 6% 80px; /* Adjust padding to account for fixed navbar */
         min-height: calc(100vh - 100px); /* Ensure content pushes footer down */
-        background-color: var(--secondary-off-white);
+        background: var(--secondary-off-white);
+        background-image: radial-gradient(
+            circle,
+            rgba(200, 167, 150, 0.2) 2px,
+            transparent 2px
+          ),
+          radial-gradient(circle, rgba(200, 167, 150, 0.2) 1px, transparent 1px);
+        background-size: 40px 40px, 80px 80px;
+        background-position: 0 0, 40px 40px;
       }
 
       .billing-container {
@@ -241,12 +249,12 @@
         grid-template-columns: 1fr; /* MODIFIED FOR LAYOUT */
         gap: 30px; /* MODIFIED FOR LAYOUT */
       }
-      
+
       .billing-content {
-          display: grid;
-          grid-template-columns: 1fr 1.5fr;
-          gap: 40px;
-          align-items: start;
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 40px;
+        align-items: start;
       }
 
       .billing-header {
@@ -355,41 +363,41 @@
         margin-bottom: 30px;
         color: var(--primary-dark-brown);
       }
-                /* Booking Form (Date + Time side by side, Requests full width) */
-.form-row.booking-form > div {
-  flex: 1;
-}
+      /* Booking Form (Date + Time side by side, Requests full width) */
+      .form-row.booking-form > div {
+        flex: 1;
+      }
 
-.booking-form input[type="date"],
-.booking-form select,
-.booking-form textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid var(--secondary-light-border);
-  border-radius: 8px;
-  font-size: 16px;
-  font-family: "Inter", sans-serif;
-  color: var(--primary-dark-gray);
-  transition: border-color 0.3s ease;
-  background-color: var(--primary-white);
-}
+      .booking-form input[type="date"],
+      .booking-form select,
+      .booking-form textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--secondary-light-border);
+        border-radius: 8px;
+        font-size: 16px;
+        font-family: "Inter", sans-serif;
+        color: var(--primary-dark-gray);
+        transition: border-color 0.3s ease;
+        background-color: var(--primary-white);
+      }
 
-.booking-form input[type="date"]:focus,
-.booking-form select:focus,
-.booking-form textarea:focus {
-  outline: none;
-  border-color: var(--primary-soft-rose);
-  box-shadow: 0 0 0 2px rgba(183, 110, 121, 0.2);
-}
+      .booking-form input[type="date"]:focus,
+      .booking-form select:focus,
+      .booking-form textarea:focus {
+        outline: none;
+        border-color: var(--primary-soft-rose);
+        box-shadow: 0 0 0 2px rgba(183, 110, 121, 0.2);
+      }
 
-.booking-form textarea {
-  resize: vertical;
-}
+      .booking-form textarea {
+        resize: vertical;
+      }
 
-.booking-form textarea::placeholder {
-  color: var(--secondary-medium-gray);
-  font-size: 14px;
-}
+      .booking-form textarea::placeholder {
+        color: var(--secondary-medium-gray);
+        font-size: 14px;
+      }
 
       .billing-form label {
         display: block;
@@ -463,8 +471,9 @@
 
       /* Responsive Design */
       @media (max-width: 1024px) {
-        .billing-content { /* MODIFIED FOR LAYOUT */
-            grid-template-columns: 1fr;
+        .billing-content {
+          /* MODIFIED FOR LAYOUT */
+          grid-template-columns: 1fr;
         }
         .billing-container {
           display: block; /* MODIFIED FOR LAYOUT */
@@ -569,8 +578,8 @@
           text-align: right;
         }
         .item-quantity {
-            width: 100%;
-            text-align: right;
+          width: 100%;
+          text-align: right;
         }
         .remove-item-btn {
           width: 100%;
@@ -634,68 +643,84 @@
         </div>
 
         <div class="billing-content">
-            <div class="cart-summary-section">
-                <h3>Your Order</h3>
-                <div class="cart-items" id="cart-items-list">
-                  <div class="empty-cart-message" id="empty-cart-message">
-                    Your cart is empty. Add some services to proceed!
-                  </div>
+          <div class="cart-summary-section">
+            <h3>Your Order</h3>
+            <div class="cart-items" id="cart-items-list">
+              <div class="empty-cart-message" id="empty-cart-message">
+                Your cart is empty. Add some services to proceed!
+              </div>
+            </div>
+
+            <div class="cart-summary">
+              <span>Total:</span>
+              <span id="cart-total">$0.00</span>
+            </div>
+          </div>
+
+          <div class="billing-form-section">
+            <form
+              class="billing-form"
+              id="billing-form"
+              action="https://api.web3forms.com/submit"
+              method="POST"
+            >
+              <input
+                type="hidden"
+                name="access_key"
+                value="ad0e8616-cce1-4d8e-b280-00d3ab76ae17"
+              />
+              <!-- <input type="hidden" name="access_key" value="eae2e12d-afaf-4364-ac51-fa1d6529d71f" />    @indrajit access token  -->
+              <input
+                type="hidden"
+                name="subject"
+                value="New Service Booking from Billing Page"
+              />
+              <textarea
+                name="order_summary"
+                id="hidden-order-summary"
+                style="display: none"
+              ></textarea>
+
+              <h3>Billing Details</h3>
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required />
+              </div>
+              <div class="form-row booking-form">
+                <div>
+                  <input type="date" name="date" required />
                 </div>
-      
-                <div class="cart-summary">
-                  <span>Total:</span>
-                  <span id="cart-total">$0.00</span>
+                <div>
+                  <select name="time" required>
+                    <option value="">Select time</option>
+                    <option>10:00 AM</option>
+                    <option>12:00 PM</option>
+                    <option>2:00 PM</option>
+                    <option>4:00 PM</option>
+                    <option>6:00 PM</option>
+                  </select>
                 </div>
               </div>
-      
-              <div class="billing-form-section">
-                <form class="billing-form" id="billing-form" action="https://api.web3forms.com/submit" method="POST">
-                  
-                  <input type="hidden" name="access_key" value="ad0e8616-cce1-4d8e-b280-00d3ab76ae17" />
-                  <!-- <input type="hidden" name="access_key" value="eae2e12d-afaf-4364-ac51-fa1d6529d71f" />    @indrajit access token  -->
-                  <input type="hidden" name="subject" value="New Service Booking from Billing Page" />
-                  <textarea name="order_summary" id="hidden-order-summary" style="display: none;"></textarea>
 
-                  <h3>Billing Details</h3>
-                  <div class="form-group">
-                    <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" required />
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required />
-                  </div>
-                  <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required />
-                  </div>
-                  <div class="form-row booking-form">
-  <div>
-    <input type="date" name="date" required />
-  </div>
-  <div>
-    <select name="time" required>
-      <option value="">Select time</option>
-      <option>10:00 AM</option>
-      <option>12:00 PM</option>
-      <option>2:00 PM</option>
-      <option>4:00 PM</option>
-      <option>6:00 PM</option>
-    </select>
-  </div>
-</div>
-
-<div class="booking-form">
-  <textarea
-    name="requests"
-    rows="4"
-    placeholder="Any special requests or notes..."
-  ></textarea>
-</div>
-
-                  <button type="submit" class="checkout-btn">Place Order</button>
-                </form>
+              <div class="booking-form">
+                <textarea
+                  name="requests"
+                  rows="4"
+                  placeholder="Any special requests or notes..."
+                ></textarea>
               </div>
+
+              <button type="submit" class="checkout-btn">Place Order</button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -741,7 +766,8 @@
       // --- Cart Functionality for Billing Page ---
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
       const cartCountElement = document.getElementById("cart-count");
-      const mobileCartCountElement = document.getElementById("mobile-cart-count");
+      const mobileCartCountElement =
+        document.getElementById("mobile-cart-count");
       const cartItemsList = document.getElementById("cart-items-list");
       const cartTotalElement = document.getElementById("cart-total");
       const emptyCartMessage = document.getElementById("empty-cart-message");
@@ -761,9 +787,13 @@
             itemElement.innerHTML = `
               <div class="item-details">
                 <h3>${item.name}</h3>
-                <p>Quantity: <span class="item-quantity">${item.quantity}</span></p>
+                <p>Quantity: <span class="item-quantity">${
+                  item.quantity
+                }</span></p>
               </div>
-              <strong class="item-price">$${(item.price * item.quantity).toFixed(2)}</strong>
+              <strong class="item-price">$${(
+                item.price * item.quantity
+              ).toFixed(2)}</strong>
               <button class="remove-item-btn" data-index="${index}">Remove</button>
             `;
             cartItemsList.appendChild(itemElement);
@@ -797,25 +827,33 @@
 
       // UPDATE 2: This is the updated form submission logic
       const billingForm = document.getElementById("billing-form");
-      const hiddenOrderSummary = document.getElementById("hidden-order-summary");
+      const hiddenOrderSummary = document.getElementById(
+        "hidden-order-summary"
+      );
 
       billingForm.addEventListener("submit", (event) => {
         // First, check if the cart is empty. If it is, stop the form from submitting.
         if (cart.length === 0) {
-          event.preventDefault(); 
-          alert("Your cart is empty. Please add services before placing an order.");
+          event.preventDefault();
+          alert(
+            "Your cart is empty. Please add services before placing an order."
+          );
           return;
         }
 
         // If the cart has items, format them into a clean string for the email
         let orderSummaryText = "--- SERVICES BOOKED ---\n\n";
         let total = 0;
-        cart.forEach(item => {
-            const itemTotal = item.price * item.quantity;
-            orderSummaryText += `${item.name} (Quantity: ${item.quantity}) - $${itemTotal.toFixed(2)}\n`;
-            total += itemTotal;
+        cart.forEach((item) => {
+          const itemTotal = item.price * item.quantity;
+          orderSummaryText += `${item.name} (Quantity: ${
+            item.quantity
+          }) - $${itemTotal.toFixed(2)}\n`;
+          total += itemTotal;
         });
-        orderSummaryText += `\n----------------------\nTOTAL: $${total.toFixed(2)}`;
+        orderSummaryText += `\n----------------------\nTOTAL: $${total.toFixed(
+          2
+        )}`;
 
         // Put the formatted string into our hidden textarea so it gets sent with the form
         hiddenOrderSummary.value = orderSummaryText;

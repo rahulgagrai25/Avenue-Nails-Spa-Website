@@ -1026,7 +1026,7 @@ svg {
   }
 
   .gallery img {
-    height: auto; /* Adjust height for smaller screens */
+    height: 300px; /* Adjust height for smaller screens */
     width: 100%;
   }
 

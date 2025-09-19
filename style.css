@@ -491,6 +491,14 @@ body {
   padding: 60px 10%;
   text-align: center;
   font-family: "Inter", sans-serif;
+  background-image: radial-gradient(
+      circle,
+      rgba(200, 167, 150, 0.2) 2px,
+      transparent 2px
+    ),
+    radial-gradient(circle, rgba(200, 167, 150, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px, 80px 80px;
+  background-position: 0 0, 40px 40px;
 }
 
 .gallery img {
@@ -518,6 +526,7 @@ body {
 .gallery-slider {
   position: relative;
   max-width: 100%;
+  scale: 80%;
   margin: auto;
   overflow: hidden;
   border-radius: 12px;

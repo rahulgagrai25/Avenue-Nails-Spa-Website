@@ -362,10 +362,58 @@
 
     .facials-note {
       margin: 12px 6px 6px;
-      font-size: 12.5px;
-      color: #8a7f78;
+      font-size: 16px;
+      color: black;
+      opacity: 50%;
+      border-radius: 10px;
+      padding: 5px 10px;
+      text-align: center;
+      background-color: var(--secondary-light-pink-quote);
+    }
+
+    /* New style for booking instructions */
+    .booking-instructions {
+      margin: 20px auto;
+      max-width: 800px;
+      padding: 20px;
+      background-color: var(--secondary-pale-beige);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      color: var(--primary-dark-gray);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .booking-instructions h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 24px;
+      color: var(--primary-soft-rose);
+      margin-bottom: 10px;
       text-align: center;
     }
+
+    .booking-instructions h4 {
+      font-family: "Inter", sans-serif;
+      font-size: 18px;
+      color: var(--primary-dark-brown);
+      margin-top: 15px;
+      margin-bottom: 8px;
+    }
+
+    .booking-instructions ul {
+      list-style: disc;
+      margin-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    .booking-instructions ul li {
+      margin-bottom: 5px;
+    }
+
+    .booking-instructions p strong {
+      color: var(--secondary-dark-rose);
+    }
+
 
     .facials-cta {
       display: block;
@@ -649,6 +697,19 @@
       .lash-category-title {
         font-size: 22px;
       }
+
+      .booking-instructions h3 {
+        font-size: 20px;
+      }
+
+      .booking-instructions h4 {
+        font-size: 16px;
+      }
+
+      .booking-instructions {
+        font-size: 14px;
+        padding: 15px;
+      }
     }
     
     @media (max-width: 480px) {
@@ -709,6 +770,19 @@
       }
       .lash-category-title {
         font-size: 20px;
+      }
+
+      .booking-instructions h3 {
+        font-size: 18px;
+      }
+
+      .booking-instructions h4 {
+        font-size: 15px;
+      }
+
+      .booking-instructions {
+        font-size: 13px;
+        padding: 10px;
       }
     }
   </style>
@@ -796,9 +870,9 @@
                   </div>
                 </div>
                 <div class="fc-right">
-                  <strong class="fc-price">$99.75</strong>
+                  <strong class="fc-price">$105</strong>
                   <div class="add-to-cart-container">
-                    <button class="add-to-cart-btn" data-item-name="Swedish Relaxation Massage (60 min)" data-item-price="99.75">Add to Cart</button>
+                    <button class="add-to-cart-btn" data-item-name="Swedish Relaxation Massage (60 min)" data-item-price="105">Add to Cart</button>
                     <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Swedish Relaxation Massage (60 min)">-</button>
@@ -842,9 +916,9 @@
                   </div>
                 </div>
                 <div class="fc-right">
-                  <strong class="fc-price">$110.25</strong>
+                  <strong class="fc-price">$120</strong>
                   <div class="add-to-cart-container">
-                    <button class="add-to-cart-btn" data-item-name="Deep Tissue Massage (60 min)" data-item-price="110.25">Add to Cart</button>
+                    <button class="add-to-cart-btn" data-item-name="Deep Tissue Massage (60 min)" data-item-price="120">Add to Cart</button>
                     <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Deep Tissue Massage (60 min)">-</button>
@@ -888,9 +962,9 @@
                   </div>
                 </div>
                 <div class="fc-right">
-                  <strong class="fc-price">$110.25</strong>
+                  <strong class="fc-price">$105</strong>
                   <div class="add-to-cart-container">
-                    <button class="add-to-cart-btn" data-item-name="Lymphatic Drainage Massage (60 min)" data-item-price="110.25">Add to Cart</button>
+                    <button class="add-to-cart-btn" data-item-name="Lymphatic Drainage Massage (60 min)" data-item-price="105">Add to Cart</button>
                     <div class="add-to-cart-notification">Added</div>
                     <div class="quantity-controls" style="display: none;">
                       <button class="decrease-quantity" data-item-name="Lymphatic Drainage Massage (60 min)">-</button>
@@ -903,8 +977,20 @@
             </div>
 
             <p class="facials-note">
-              Benefits: reduces swelling, detoxification, post-surgery recovery, cellulite reduction, eases sinus congestion.
+              Benefits of Massage: Relieves chronic back pain, helps lower high blood pressure, reduces stress, anxiety, and muscle tension, breaks up scar tissue and adhesions, aids athletic recovery and performance, and can alleviate arthritis symptoms, neck, and shoulder pain.
             </p>
+
+            <!-- Booking Instructions for Add-Ons -->
+            <div class="booking-instructions">
+              <h3>Booking Instructions for Hot Stone & Cupping Add-Ons</h3>
+              <p>Please note: These add-ons are only available to clients who have booked a therapeutic body massage. They cannot be booked as standalone treatments.</p>
+              <h4>How to Book:</h4>
+              <ul>
+                <li>Book your therapeutic body massage as usual.</li>
+                <li>Let your therapist know at the start of your session if you'd like to include the Hot Stone or Cupping add-on. Your therapist will seamlessly incorporate it into your massage for a personalized and relaxing experience.</li>
+              </ul>
+              <p><strong>Tip:</strong> Adding an add-on allows your therapist to target specific areas more deeply, improve circulation, and give you a more restorative session.</p>
+            </div>
 
             <a href="billing.html" class="facials-cta">Book Your Appointment</a>
           </div>

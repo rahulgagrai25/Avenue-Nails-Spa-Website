@@ -540,7 +540,7 @@
                 required
               />
 
-              <select name="service" required>
+              <!-- <select name="service" required>
                 <option value="">Select a service</option>
                 <option>Facials & Head Spa</option>
                 <option>Massage</option>
@@ -560,7 +560,29 @@
                   <option>4:00 PM</option>
                   <option>6:00 PM</option>
                 </select>
-              </div>
+              </div> -->
+
+              <select name="service" id="service-select" required>
+            <option value="">Select a service</option>
+            <option value="Facials & Head Spa">Facials & Head Spa</option>
+            <option value="Massage">Massage</option>
+            <option value="Waxing & Tinting">Waxing & Tinting</option>
+            <option value="Lashes & Eyebrows">Lashes & Eyebrows</option>
+            <option value="Korean Permanent Makeup">Korean Permanent Makeup</option>
+            <option value="Nails">Nails</option>
+          </select>
+
+          <div class="date-time" id="date-time-section">
+            <input type="date" name="date" id="date-input" required />
+            <select name="time" id="time-select" required>
+              <option value="">Select time</option>
+              <option>10:00 AM</option>
+              <option>12:00 PM</option>
+              <option>2:00 PM</option>
+              <option>4:00 PM</option>
+              <option>6:00 PM</option>
+            </select>
+          </div>
 
               <textarea
                 name="requests"
@@ -814,6 +836,35 @@
       </div>
     </footer>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const serviceSelect = document.getElementById('service-select');
+      const dateTimeSection = document.getElementById('date-time-section');
+      const dateInput = document.getElementById('date-input');
+      const timeSelect = document.getElementById('time-select');
+      
+      // Function to toggle date/time visibility
+      function toggleDateTimeVisibility() {
+        const selectedService = serviceSelect.value;
+        
+        if (selectedService === 'Facials & Head Spa' || selectedService === 'Massage') {
+          dateTimeSection.classList.add('hidden');
+          dateInput.removeAttribute('required');
+          timeSelect.removeAttribute('required');
+        } else {
+          dateTimeSection.classList.remove('hidden');
+          dateInput.setAttribute('required', 'required');
+          timeSelect.setAttribute('required', 'required');
+        }
+      }
+      
+      // Initial check on page load
+      toggleDateTimeVisibility();
+      
+      // Add event listener for service selection changes
+      serviceSelect.addEventListener('change', toggleDateTimeVisibility);
+    });
+  </script>
     <!-- React Scripts -->
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
